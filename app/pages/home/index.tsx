@@ -17,7 +17,7 @@ const Home: Component = () => {
                 </div>
 
                 <div class='sub title_small'>
-                    An all-new site is comming soon
+                    An all-new site is coming soon
                 </div>
             </div>
         </main>
