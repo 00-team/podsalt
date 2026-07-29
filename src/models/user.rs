@@ -1,0 +1,150 @@
+use crate::AppState;
+use actix_multipart::form::{tempfile::TempFile, MultipartForm};
+use actix_web::{dev::Payload, web::Data, FromRequest, HttpRequest};
+use potk::{Perm, Perms};
+use std::{future::Future, pin::Pin};
+use utoipa::ToSchema;
+
+use super::{auth::Authorization, AppErr};
+
+#[derive(Debug, Clone, Default)]
+#[derive(serde::Serialize, serde::Deserialize, sqlx::FromRow, utoipa::ToSchema)]
+pub struct User {
+    pub id: i64,
+    pub first_name: Option<String>,
+    pub last_name: Option<String>,
+    pub address: Option<String>,
+    pub company_name: Option<String>,
+    pub email: Option<String>,
+    pub phone: String,
+    pub token: Option<String>,
+    pub photo: Option<String>,
+    pub admin: Vec<u8>,
+    pub banned: bool,
+    pub created_at: i64,
+    pub order_count: i64,
+    pub online_at: i64,
+}
+
+#[derive(Debug, MultipartForm, ToSchema)]
+pub struct UpdatePhoto {
+    #[schema(value_type = String, format = Binary)]
+    #[multipart(limit = "8 MiB")]
+    pub photo: TempFile,
+}
+
+/// custom perms
+pub mod perms {
+    potk::perms! {
+        MASTER,
+        V_USER, A_USER, C_USER, D_USER,
+        V_PRODUCT, A_PRODUCT, C_PRODUCT, D_PRODUCT,
+        V_PRODUCT_TAG, A_PRODUCT_TAG, C_PRODUCT_TAG, D_PRODUCT_TAG,
+        V_MATERIAL, A_MATERIAL, C_MATERIAL_INFO, C_MATERIAL_COUNT, D_MATERIAL,
+        V_ORDER, A_ORDER, C_ORDER, D_ORDER,
+    }
+}
+
+pub struct Admin {
+    pub user: User,
+    pub perms: [u8; 32],
+}
+
+impl Perms for Admin {
+    type Error = AppErr;
+
+    fn perm_check(&self, perm: Perm) -> Result<(), Self::Error> {
+        if self.perm_get(perms::MASTER) || self.perm_get(perm) {
+            Ok(())
+        } else {
+            crate::err!(Forbidden)
+        }
+    }
+
+    fn perm_any(&self) -> bool {
+        self.perms.perm_any()
+    }
+
+    fn perm_get(&self, perm: Perm) -> bool {
+        self.perms.perm_get(perm)
+    }
+
+    fn perm_set(&mut self, perm: Perm, value: bool) {
+        self.perms.perm_set(perm, value)
+    }
+}
+
+impl FromRequest for User {
+    type Error = AppErr;
+    type Future = Pin<Box<dyn Future<Output = Result<Self, Self::Error>>>>;
+
+    fn from_request(req: &HttpRequest, _pl: &mut Payload) -> Self::Future {
+        let state = req.app_data::<Data<AppState>>().unwrap();
+        let auth = Authorization::try_from(req);
+        let pool = state.sql.clone();
+        // let token = extract_token(req);
+        // let token = BearerAuth::from_request(req, pl);
+
+        Box::pin(async move {
+            let user = match auth? {
+                Authorization::User { id, token } => {
+                    let res = sqlx::query_as! {
+                        User,
+                        "select * from users where id = ? and token = ?",
+                        id, token
+                    }
+                    .fetch_one(&pool)
+                    .await;
+
+                    let Ok(res) = res else {
+                        return crate::err!(BadAuth);
+                    };
+                    res
+                }
+            };
+
+            if user.banned {
+                return crate::err!(UserBanned, "banned");
+            }
+
+            let now = crate::utils::now();
+            if user.online_at + crate::Config::ONLINE_UPDATE_INTERVAL < now {
+                let _ = sqlx::query!(
+                    "update users set online_at = ? where id = ?",
+                    now,
+                    user.id
+                )
+                .execute(&pool)
+                .await;
+            }
+
+            Ok(user)
+        })
+    }
+}
+
+impl FromRequest for Admin {
+    type Error = AppErr;
+    type Future = Pin<Box<dyn Future<Output = Result<Self, Self::Error>>>>;
+
+    fn from_request(req: &HttpRequest, payload: &mut Payload) -> Self::Future {
+        let user = User::from_request(req, payload);
+        Box::pin(async {
+            let user = user.await?;
+            let perms: [u8; 32] = if user.admin.len() >= 32 {
+                user.admin[..32].try_into().unwrap()
+            } else {
+                let mut perms = [0u8; 32];
+                user.admin.iter().enumerate().for_each(|(i, b)| perms[i] = *b);
+                perms
+            };
+
+            let admin = Admin { user, perms };
+            if !admin.perm_any() {
+                return crate::err!(Forbidden);
+            }
+
+            Ok(admin)
+        })
+    }
+}

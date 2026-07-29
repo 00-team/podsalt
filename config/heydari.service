@@ -1,0 +1,16 @@
+[Unit]
+Description=podsalt backend
+After=syslog.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/x/podsalt/
+EnvironmentFile=/x/podsalt/.env
+ExecStart=/x/podsalt/target/release/podsalt
+KillSignal=SIGQUIT
+StandardError=file:/x/podsalt/stderr.log
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target

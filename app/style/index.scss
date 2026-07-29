@@ -1,0 +1,176 @@
+@use 'config' as g;
+@use './theme';
+
+@import './fonts';
+@import './button';
+@import './input';
+@import './root';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    @include theme.light;
+
+    color: var(--accent-color);
+
+    background: rgba(29, 213, 242, 0.29);
+
+    font-family: var(--fa), var(--en), sans-serif;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow-x: hidden;
+
+    @media screen and (max-width: 768px) {
+        height: auto;
+    }
+
+    .root {
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        main {
+            width: 100%;
+            height: auto;
+
+            display: flex;
+        }
+
+        > .loading-panel {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 3rem;
+
+            direction: rtl;
+        }
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    code {
+        // background-color: var(--slate-1);
+        background-color: var(--black);
+        padding: 0.1rem 0.2rem;
+        border-radius: var(--radius);
+        font-size: 16px;
+    }
+
+    a {
+        color: var(--ca);
+        text-decoration: none;
+    }
+
+    img {
+        user-select: none;
+    }
+
+    label {
+        user-select: none;
+    }
+}
+
+span.copiable {
+    cursor: pointer;
+
+    &:hover {
+        color: var(--ca);
+    }
+
+    &:active {
+        color: var(--cl);
+    }
+}
+
+::-webkit-scrollbar {
+    width: 9px;
+    background-color: var(--sixty-percent);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    border: 2px solid var(--sixty-percent);
+    background-color: var(--thirty-percent);
+}
+
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-fg);
+}
+
+// reset
+a {
+    color: unset;
+    text-decoration: none;
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+
+    text-decoration: none;
+    color: inherit;
+}
+
+.title_hero {
+    font-size: g.$TITLE_FONTSIZE_HERO;
+    font-family: 'iranBold';
+}
+.section_title {
+    font-size: clamp(1.6rem, 2.9vw + 1.3rem, 2.8rem);
+    font-family: 'iranBold';
+}
+.title {
+    font-size: g.$TITLE_FONTSIZE;
+    font-family: 'yekanBold';
+}
+.title_small {
+    font-size: g.$TITLE_FONTSIZE_SMALL;
+    font-family: 'yekanBold';
+}
+.title_smaller {
+    font-size: g.$TITLE_FONTSIZE_SMALLER;
+    font-family: 'yekan';
+}
+
+.description {
+    font-size: g.$DESCRIPTION_FONT_SIZE;
+    font-family: 'yekan';
+}
+.description_small {
+    font-size: g.$DESCRIPTION_FONT_SIZE_SMALL;
+    font-family: 'yekan';
+}
+.number {
+    font-family: number;
+}
+.icon {
+    display: grid;
+    place-items: center;
+}
+
+#select-tab {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}

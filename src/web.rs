@@ -1,0 +1,455 @@
+use actix_web::dev::HttpServiceFactory;
+use actix_web::http::header::ContentType;
+use actix_web::middleware::NormalizePath;
+use actix_web::web::{self, Data, Path, Query};
+use actix_web::{get, routes, FromRequest, HttpRequest, HttpResponse, Scope};
+use minijinja::{context, path_loader, Environment};
+use serde::{Deserialize, Serialize};
+use sqlx::Sqlite;
+use std::collections::{HashMap, HashSet};
+use std::hash::RandomState;
+use std::path::PathBuf;
+
+use crate::config::Config;
+use crate::models::order::Order;
+use crate::models::product::{Product, ProductKind, ProductTag};
+use crate::models::user::User;
+use crate::models::{AppErr, ListInput};
+use crate::AppState;
+
+type Response = Result<HttpResponse, AppErr>;
+
+#[get("/")]
+async fn r_home(user: Option<User>, state: Data<AppState>) -> Response {
+    let tmpl = state.env.get_template("home/index.html")?;
+    let best_products = sqlx::query_as! {
+        Product,
+        "select * from products where best = true"
+    }
+    .fetch_all(&state.sql)
+    .await?;
+
+    let result = tmpl.render(context! {
+        best_products => best_products,
+        user => user,
+    })?;
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[derive(Deserialize, Debug)]
+#[serde(rename_all = "snake_case")]
+enum Sort {
+    Asc,
+    Desc,
+}
+
+#[derive(Deserialize, Debug)]
+struct ProductsQuery {
+    leg: Option<i64>,
+    bed: Option<i64>,
+    kind: Option<ProductKind>,
+    sort: Option<Sort>,
+    page: Option<u32>,
+}
+
+#[get("/products")]
+async fn r_products(
+    rq: HttpRequest, user: Option<User>, state: Data<AppState>,
+) -> Response {
+    let tmpl = state.env.get_template("products/index.html")?;
+    let q = Query::<ProductsQuery>::extract(&rq).await;
+    let mut sort = "desc";
+    let mut page = 0;
+    let mut filter = Vec::<String>::new();
+
+    if let Ok(q) = &q {
+        if matches!(q.sort, Some(Sort::Asc)) {
+            sort = "asc";
+        }
+
+        page = q.page.unwrap_or(0);
+
+        if let Some(kind) = &q.kind {
+            filter.push(format!("kind = {}", *kind as i64));
+
+            if let Some(leg) = q.leg {
+                filter.push(format!("tag_leg = {leg}"));
+            }
+
+            if let Some(bed) = q.bed {
+                filter.push(format!("tag_bed = {bed}"));
+            }
+        }
+    }
+
+    let cond = if !filter.is_empty() {
+        "where ".to_string() + &filter.join(" AND ")
+    } else {
+        String::new()
+    };
+
+    #[derive(sqlx::FromRow)]
+    struct Count {
+        count: i64,
+    }
+    let products_count: Count = sqlx::query_as(&format!(
+        "select count(1) as count from products {cond}"
+    ))
+    .fetch_one(&state.sql)
+    .await?;
+    let pages = if products_count.count > 0 {
+        // (products_count.count as f32 / 32f32).ceil() as u32
+        products_count.count as u32 / 32
+    } else {
+        0
+    };
+
+    // log::info!("pages: {page}/{pages} | count: {}", products_count.count);
+
+    let products: Vec<Product> = sqlx::query_as(&format!(
+        "select * from products {} order by created_at {} limit 32 offset ?",
+        cond, sort
+    ))
+    .bind(page * 32)
+    .fetch_all(&state.sql)
+    .await?;
+
+    let tags = sqlx::query_as! {
+        ProductTag, "select * from product_tags"
+    }
+    .fetch_all(&state.sql)
+    .await?;
+
+    let tags = tags
+        .iter()
+        .map(|v| (v.id, v.clone()))
+        .collect::<HashMap<i64, ProductTag>>();
+
+    let result = tmpl.render(context! {
+        products => products,
+        tags => tags,
+        pages => pages,
+        page => page,
+        user => user,
+    })?;
+
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[get("/products/{slug}")]
+async fn r_product(
+    path: Path<(String,)>, user: Option<User>, state: Data<AppState>,
+) -> Response {
+    let tmpl = state.env.get_template("product/index.html")?;
+    // let path = Path::<(String,)>::extract(&rq).await;
+    // if path.is_err() {
+    //     return Ok(HttpResponse::NotFound()
+    //         .content_type(ContentType::html())
+    //         .body("404"));
+    // }
+
+    let slug = &path.0;
+    let product = sqlx::query_as! {
+        Product, "select * from products where slug = ?", slug
+    }
+    .fetch_one(&state.sql)
+    .await?;
+
+    let mut related = sqlx::query_as! {
+        Product,
+        "select * from products where id != ? and kind = ? and (tag_leg = ? or tag_bed = ?) limit 4",
+        product.id, product.kind, product.tag_leg, product.tag_bed
+    }
+    .fetch_all(&state.sql)
+    .await?;
+
+    if related.len() < 4 {
+        let limit = 4 - related.len() as i64;
+        let other_related = sqlx::query_as! {
+            Product,
+            "select * from products where id != ? and kind = ? limit ?",
+            product.id, product.kind, limit
+        }
+        .fetch_all(&state.sql)
+        .await?;
+
+        related.extend(other_related);
+    }
+
+    let tags = sqlx::query_as! {
+        ProductTag, "select * from product_tags where id in (?, ?)",
+        product.tag_leg, product.tag_bed
+    }
+    .fetch_all(&state.sql)
+    .await?;
+
+    let tags = tags
+        .iter()
+        .map(|value| (value.id, value.clone()))
+        .collect::<HashMap<_, _>>();
+
+    let result = tmpl.render(context! {
+        product => product,
+        related => related,
+        tags => tags,
+        user => user,
+    })?;
+
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[get("/contact")]
+async fn r_contact(user: Option<User>, state: Data<AppState>) -> Response {
+    let tmpl = state.env.get_template("contact/index.html")?;
+    let result = tmpl.render(context! { user => user })?;
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[get("/about")]
+async fn r_about(user: Option<User>, state: Data<AppState>) -> Response {
+    let tmpl = state.env.get_template("about/index.html")?;
+    let result = tmpl.render(context! { user => user })?;
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+fn redirect(loc: &str) -> HttpResponse {
+    HttpResponse::TemporaryRedirect()
+        .insert_header((actix_web::http::header::LOCATION, loc))
+        .finish()
+}
+
+#[get("/login")]
+async fn r_login(user: Option<User>, state: Data<AppState>) -> Response {
+    let None = user else { return Ok(redirect("/account")) };
+
+    let tmpl = state.env.get_template("login/index.html")?;
+    let result = tmpl.render(context! { user => user })?;
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[get("/account")]
+async fn r_account_profile(
+    user: Option<User>, state: Data<AppState>,
+) -> Response {
+    let Some(user) = user else { return Ok(redirect("/login")) };
+
+    let tmpl = state.env.get_template("account/profile.html")?;
+    let result = tmpl.render(context! { user => user })?;
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[derive(serde::Deserialize, Debug)]
+struct UserOrdersQuery {
+    page: Option<u32>,
+}
+
+#[get("/account/orders")]
+async fn r_account_orders(
+    rq: HttpRequest, user: Option<User>, state: Data<AppState>,
+) -> Response {
+    let Some(user) = user else { return Ok(redirect("/login")) };
+
+    let tmpl = state.env.get_template("account/orders.html")?;
+    let q = Query::<UserOrdersQuery>::extract(&rq).await;
+    let mut page = 0;
+    if let Ok(q) = q {
+        page = q.page.unwrap_or_default();
+    }
+
+    let offset = page * 32;
+    let orders = sqlx::query_as! {
+        Order,
+        "select * from orders where user = ? limit 32 offset ?",
+        user.id, offset
+    }
+    .fetch_all(&state.sql)
+    .await?;
+
+    let order_count = sqlx::query!(
+        "select count(1) as count from orders where user = ?",
+        user.id
+    )
+    .fetch_one(&state.sql)
+    .await?;
+
+    let pages = if order_count.count > 0 {
+        order_count.count as u32 / 32
+    } else {
+        0
+    };
+
+    let prod_ids = HashSet::<i64>::from_iter(orders.iter().map(|o| o.product));
+
+    let products = if !prod_ids.is_empty() {
+        let mut s = String::with_capacity(1024);
+        s.push_str("select * from products where id IN (");
+        for id in prod_ids.iter() {
+            s.push_str(&id.to_string());
+            s.push(',');
+        }
+        s.pop();
+        s.push(')');
+
+        sqlx::query_as::<Sqlite, Product>(&s).fetch_all(&state.sql).await?
+    } else {
+        vec![]
+    };
+
+    let products = HashMap::<i64, &Product, RandomState>::from_iter(
+        products.iter().map(|p| (p.id, p)),
+    );
+
+    let result = tmpl.render(context! {
+        user => user,
+        orders => orders,
+        products => products,
+        page => page,
+        pages => pages
+    })?;
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[get("/blogs")]
+async fn r_blogs(
+    user: Option<User>, rq: HttpRequest, state: Data<AppState>,
+) -> Response {
+    let tmpl = state.env.get_template("blogs/index.html")?;
+    let mut page = 0;
+
+    if let Ok(q) = Query::<ListInput>::extract(&rq).await {
+        page = q.page;
+    }
+
+    let conf = Config::get();
+    let url = conf.simurgh_url(&format!("/blogs-ssr/?page={page}"));
+
+    let res = 'r: {
+        let Ok(r) = conf.simurgh.get(url).send().await else { break 'r None };
+        r.text().await.ok()
+    }
+    .unwrap_or_default();
+
+    let result = tmpl.render(context! {
+        blogs_body => res,
+        user => user,
+    })?;
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+#[serde(rename_all = "snake_case")]
+enum BlogStatus {
+    Draft,
+    Published,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct Blog {
+    id: i64,
+    slug: String,
+    status: BlogStatus,
+    author: Option<i64>,
+    project: Option<i64>,
+    category: Option<i64>,
+    created_at: i64,
+    updated_at: i64,
+    title: String,
+    detail: String,
+    html: String,
+    data: serde_json::Value,
+    read_time: i64,
+    thumbnail: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+struct BlogSSRR {
+    blog: Blog,
+    html: String,
+}
+
+#[get("/blogs/{slug}")]
+async fn r_blog(
+    user: Option<User>, path: Path<(String,)>, state: Data<AppState>,
+) -> Response {
+    let tmpl = state.env.get_template("blog/index.html")?;
+
+    let conf = Config::get();
+    let url = conf.simurgh_url(&format!("/blogs-ssr/{}/", path.0));
+    let res = conf.simurgh.get(url).send().await?.json::<BlogSSRR>().await?;
+
+    let result = tmpl.render(context! {
+        blog_body => res.html,
+        blog => res.blog,
+        user => user
+    })?;
+    Ok(HttpResponse::Ok().content_type(ContentType::html()).body(result))
+}
+
+#[routes]
+#[get("/admin")]
+#[get("/admin/{path:.*}")]
+async fn r_admin_index() -> HttpResponse {
+    let result = std::fs::read_to_string("admin/dist/index.html")
+        .unwrap_or("err reading admin index.html".to_string());
+    HttpResponse::Ok().content_type(ContentType::html()).body(result)
+}
+
+#[get("/robots.txt")]
+async fn r_robots() -> HttpResponse {
+    HttpResponse::Ok().content_type(ContentType::plaintext()).body(
+        r###"User-agent: *
+Disallow: /admin/
+Disallow: /api/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://podsalt-prime.com/sitemap.xml
+"###,
+    )
+}
+
+pub async fn not_found(user: Option<User>, state: Data<AppState>) -> Response {
+    let tmpl = state.env.get_template("404.html")?;
+    let result = tmpl.render(context! { user => user })?;
+    Ok(HttpResponse::NotFound().content_type(ContentType::html()).body(result))
+}
+
+pub fn toman(irr: i64) -> String {
+    (irr / 10)
+        .to_string()
+        .as_bytes()
+        .rchunks(3)
+        .rev()
+        .map(std::str::from_utf8)
+        .collect::<Result<Vec<&str>, _>>()
+        .unwrap_or_default()
+        .join(",")
+}
+
+pub fn templates() -> Environment<'static> {
+    let tmpl_path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("templates");
+    let mut tmpl_env = Environment::new();
+    tmpl_env.add_filter("toman", toman);
+    tmpl_env.set_loader(path_loader(tmpl_path));
+    tmpl_env
+}
+
+pub fn router() -> impl HttpServiceFactory {
+    Scope::new("")
+        .wrap(NormalizePath::trim())
+        .service(r_home)
+        .service(r_products)
+        .service(r_product)
+        .service(r_contact)
+        .service(r_about)
+        .service(r_blogs)
+        .service(r_login)
+        .service(r_blog)
+        .service(r_account_profile)
+        .service(r_account_orders)
+        .service(r_admin_index)
+        .service(r_robots)
+        .service(web::resource("/404/").get(not_found))
+        .service(super::sitemap::router())
+}
