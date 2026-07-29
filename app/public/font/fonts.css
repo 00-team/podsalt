@@ -1,0 +1,5 @@
+@font-face {
+    font-family: 'cabin';
+    font-display: swap;
+    src: url('./cabin/cabin.ttf') format('truetype');
+}

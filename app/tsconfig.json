@@ -10,37 +10,42 @@
         // "types": ["vite/client"],
         "noEmit": true,
         "isolatedModules": true,
-        "baseUrl": "./",
-        "rootDir": "./",
+        // "paths": {
+        //     "!/*": ["./*"]
+        // },
         "resolveJsonModule": true,
-        //
-        // "moduleResolution": "bundler",
-        //
-        "useDefineForClassFields": true,
-        "lib": ["ESNext", "DOM", "DOM.Iterable"],
-        "skipLibCheck": true,
-        "allowImportingTsExtensions": true,
-        "allowUnreachableCode": false,
-        "allowUnusedLabels": false,
+
+        "allowUnreachableCode": true,
+        "allowUnusedLabels": true,
         "downlevelIteration": true,
+        "lib": ["DOM", "DOM.Iterable", "ESNext", "WebWorker"],
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,
         "outDir": "./dist/",
+        "rootDir": "./",
+        "baseUrl": "./",
         "removeComments": true,
         "noEmitOnError": true,
+
         "strict": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
         "alwaysStrict": true,
+
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "noUncheckedIndexedAccess": true,
         "noImplicitOverride": true,
-        "typeRoots": ["node_modules/@types", "./src/@types"],
+
+        "typeRoots": ["node_modules/@types", "./@types"],
         "experimentalDecorators": true,
+
+        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
-    }
+    },
+    "include": ["./", "./server", "./public/script/confetti.js"],
+    "exclude": ["*.js", "node_modules"]
 }
