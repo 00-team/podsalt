@@ -29,6 +29,18 @@ const Navbar: Component = () => {
                 link: '/blog',
                 text: 'Blog',
             },
+            {
+                link: '/#fap',
+                text: 'Faq',
+            },
+            {
+                link: '/contact',
+                text: 'Get In Touch',
+            },
+            {
+                link: '/products',
+                text: 'shop by flavour',
+            },
         ]
 
         const Link: Component<LINK> = R => {
@@ -36,7 +48,8 @@ const Navbar: Component = () => {
                 <A
                     href={R.link}
                     end={R.link == '/'}
-                    class='nav-link title_small'
+                    class='nav-link title'
+                    classList={{ [R.text]: true }}
                     inactiveClass=''
                 >
                     {R.text}
@@ -88,10 +101,62 @@ const Navbar: Component = () => {
         )
     }
 
+    const PromotionBar: Component = () => {
+        interface PromProps {
+            title: string
+            subtitle: string
+            img: string
+        }
+        const Prom: Component<PromProps> = R => {
+            return (
+                <div class='prom-cmp '>
+                    <img src={R.img} fetchpriority='high' decoding='async' />
+
+                    <div class='holders title_small'>
+                        <div class='main '>{R.title}</div>
+                        <div class='sub '>{R.subtitle}</div>
+                    </div>
+                </div>
+            )
+        }
+
+        return (
+            <div class='promotion-bar-container'>
+                <div class='promotion-bar-wrapper'>
+                    <Prom
+                        title='Free & Fast Shipping.'
+                        subtitle='Free On all orders over £30'
+                        img='/public/imgs/delivery.webp'
+                    />
+                    <Prom
+                        title='Excellent Customer Service.'
+                        subtitle='Get in touch, we’re here to help'
+                        img='/public/imgs/support.webp'
+                    />
+                    <Prom
+                        title='Great Savings.'
+                        subtitle='Great deals on our bundles'
+                        img='/public/imgs/save.webp'
+                    />
+
+                    <div class='exc-bar'>
+                        <img
+                            draggable={false}
+                            src='/public/imgs/trust.png'
+                            fetchpriority='high'
+                            decoding='async'
+                        />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <nav class='nav-container'>
             <DesktopNav />
             <MobileNav />
+            <PromotionBar />
         </nav>
     )
 }
