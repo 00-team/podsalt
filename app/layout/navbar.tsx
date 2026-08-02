@@ -1,5 +1,6 @@
-import { Component, createSignal } from 'solid-js'
+import { Component, createSignal, For } from 'solid-js'
 
+import { A } from '@solidjs/router'
 import { HoverInp } from 'components/hoverInp'
 import { AccountIcon, CartIcon, SearchIcon } from 'icons/main'
 import './style/navbar.scss'
@@ -11,6 +12,38 @@ const Navbar: Component = () => {
         return <div class='mobile-nav-container'></div>
     }
     const DesktopNav: Component = () => {
+        type LINK = {
+            link: string
+            text: string
+        }
+        const LINKS: LINK[] = [
+            {
+                link: '/',
+                text: 'Home',
+            },
+            {
+                text: 'E-Liquids',
+                link: '/products',
+            },
+            {
+                link: '/blog',
+                text: 'Blog',
+            },
+        ]
+
+        const Link: Component<LINK> = R => {
+            return (
+                <A
+                    href={R.link}
+                    end={R.link == '/'}
+                    class='nav-link title_small'
+                    inactiveClass=''
+                >
+                    {R.text}
+                </A>
+            )
+        }
+
         return (
             <div class='desktop-nav-container'>
                 <div class='nav-header'>
@@ -47,6 +80,9 @@ const Navbar: Component = () => {
                             <CartIcon />
                         </a>
                     </div>
+                </div>
+                <div class='nav-links'>
+                    <For each={LINKS}>{link => <Link {...link} />}</For>
                 </div>
             </div>
         )
