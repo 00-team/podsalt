@@ -3,25 +3,7 @@ import { Component } from 'solid-js'
 import './style/home.scss'
 
 const Home: Component = () => {
-    return (
-        <main class='home-page-container'>
-            <img
-                src='/public/imgs/logo.webp'
-                class='logo'
-                alt='pod salt prime logo'
-            />
-
-            <div class='titles'>
-                <div class='head section_title'>
-                    <span>Site Under Construction</span>
-                </div>
-
-                <div class='sub title_small'>
-                    An all-new site is comming soon
-                </div>
-            </div>
-        </main>
-    )
+    return <main class='home-page-container'></main>
 }
 
 export default Home
