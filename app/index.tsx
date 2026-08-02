@@ -3,6 +3,7 @@ import { render } from 'solid-js/web'
 
 // import Alert from 'comps/alert'
 
+import Alerts from 'components/alert'
 import Footer from 'layout/footer'
 import Navbar from 'layout/navbar'
 import { lazy } from 'solid-js'
@@ -32,6 +33,8 @@ const Root = () => {
 
                 <Route path='*' component={UnderConstruction} />
             </Router>
+
+            <Alerts />
         </>
     )
 }
