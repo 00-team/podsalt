@@ -56,7 +56,7 @@ body {
     height: 100dvh;
 
     overflow-x: hidden;
-    direction: rtl;
+    direction: ltr;
 
     background-color: black;
 
@@ -199,10 +199,6 @@ span.logo-text-white {
 .icon {
     display: grid;
     place-items: center;
-}
-
-.rtl {
-    direction: rtl;
 }
 
 .number {

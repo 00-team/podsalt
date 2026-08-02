@@ -1,19 +1,19 @@
-@mixin dark {
-    color-scheme: dark;
-    --primary-color: #101010;
-    --accent-color: #ffffff;
+// @mixin dark {
+//     color-scheme: dark;
+//     --primary-color: #101010;
+//     --accent-color: #ffffff;
 
-    // alerts
-    --alert-shadow: #fff3;
-    --alert-error: #e20338;
-    --alert-info: #5199ff;
-    --alert-success: #00d15f;
+//     // alerts
+//     --alert-shadow: #fff3;
+//     --alert-error: #e20338;
+//     --alert-info: #5199ff;
+//     --alert-success: #00d15f;
 
-    // 60/30/10 theme
-    --sixty-percent: rgb(14, 14, 15);
-    --thirty-percent: rgb(35, 35, 37);
-    --ten-percent: rgb(255, 92, 109);
-}
+//     // 60/30/10 theme
+//     --sixty-percent: rgb(14, 14, 15);
+//     --thirty-percent: rgb(35, 35, 37);
+//     --ten-percent: rgb(255, 92, 109);
+// }
 
 @mixin light {
     color-scheme: light;
@@ -30,4 +30,10 @@
     --sixty-percent: rgb(255, 255, 255);
     --thirty-percent: rgb(239, 239, 239);
     --ten-percent: rgb(230, 35, 54);
+
+    --cta-linear: linear-gradient(
+        180deg,
+        rgba(75, 75, 75, 1) 3%,
+        rgba(25, 25, 25, 1) 97%
+    );
 }
