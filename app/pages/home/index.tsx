@@ -1,4 +1,12 @@
-import { Component, createSignal, JSX } from 'solid-js'
+import {
+    Component,
+    createSignal,
+    For,
+    JSX,
+    onCleanup,
+    onMount,
+    Show,
+} from 'solid-js'
 
 import { A } from '@solidjs/router'
 import { ArrowIcon } from 'icons/main'
@@ -6,10 +14,42 @@ import './style/home.scss'
 
 const Home: Component = () => {
     const Hero: Component = () => {
+        const imgs = ['/imgs/banner1.webp', '/imgs/banner2.webp']
+
+        const [active, setActive] = createSignal(0)
+
+        let timer: number | undefined
+
+        onMount(() => {
+            timer = window.setInterval(() => {
+                setActive(i => (i + 1) % imgs.length)
+            }, 3000)
+        })
+
+        onCleanup(() => {
+            if (timer) window.clearInterval(timer)
+        })
+
         return (
             <section class='hero-section'>
-                <div class='photos-slider'></div>
-                <div class='dots'></div>
+                <div class='photos-slider'>
+                    <Show keyed when={imgs[active()]}>
+                        {src => <img src={src} alt='Hero banner' />}
+                    </Show>
+                </div>
+
+                <div class='dots'>
+                    <For each={imgs}>
+                        {(_, i) => (
+                            <button
+                                class='dot'
+                                type='button'
+                                classList={{ active: active() === i() }}
+                                onClick={() => setActive(i())}
+                            />
+                        )}
+                    </For>
+                </div>
             </section>
         )
     }
