@@ -5,10 +5,10 @@
     padding: 0;
     box-sizing: border-box;
 
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
+    // -webkit-user-select: none; /* Safari */
+    // -moz-user-select: none; /* Firefox */
+    // -ms-user-select: none; /* IE10+/Edge */
+    // user-select: none; /* Standard */
 
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -86,21 +86,21 @@ body {
         overflow-x: hidden;
         overflow-y: auto;
 
-        --SECTION_TITLE2_FONTSIZE: 33px;
+        --SECTION_TITLE2_FONTSIZE: 37px;
         --SECTION_TITLE_FONTSIZE: 30px;
-        --HERO_TITLE_FONTSIZE: 27px;
+        --HERO_TITLE_FONTSIZE: 25px;
         --HERO2_TITLE_FONTSIZE: 21px;
         --TITLE_FONTSIZE: 18px;
-        --TITLE_FONTSIZE_SMALL: 16px;
+        --TITLE_FONTSIZE_SMALL: 17px;
         --TITLE_FONTSIZE_SMALLER: 14px;
 
         --DESCRIPTION_FONT_SIZE: 12px;
         --DESCRIPTION_FONT_SIZE_SMALL: 11px;
 
         @media screen and (max-width: 1020px) {
-            --SECTION_TITLE2_FONTSIZE: 31px;
+            --SECTION_TITLE2_FONTSIZE: 33px;
             --SECTION_TITLE_FONTSIZE: 28px;
-            --HERO_TITLE_FONTSIZE: 25px;
+            --HERO_TITLE_FONTSIZE: 23px;
             --HERO2_TITLE_FONTSIZE: 19px;
             --TITLE_FONTSIZE: 16px;
             --TITLE_FONTSIZE_SMALL: 15px;
@@ -212,7 +212,7 @@ a {
     font: inherit;
 
     -webkit-touch-callout: none; /* disables the native link hold menu on iOS */
-    -webkit-user-select: none; /* optional: prevents text selection */
+    // -webkit-user-select: none; /* optional: prevents text selection */
     -webkit-tap-highlight-color: transparent;
 }
 button {
