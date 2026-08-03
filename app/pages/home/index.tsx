@@ -66,7 +66,7 @@ const Home: Component = () => {
         }
         const Flav: Component<FlavProps> = R => {
             return (
-                <div class='flavour-cmp'>
+                <A href='/products' class='flavour-cmp'>
                     <div class='texts'>
                         <div class='title_hero'>{R.title}</div>
 
@@ -74,7 +74,7 @@ const Home: Component = () => {
                     </div>
 
                     <img src={R.img} loading='lazy' decoding='async' />
-                </div>
+                </A>
             )
         }
         return (
