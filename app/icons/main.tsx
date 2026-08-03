@@ -47,12 +47,7 @@ export const SearchIcon = () => (
 )
 
 export const CloseCircleIcon = () => (
-    <svg
-        fill='none'
-        stroke='currentColor'
-        class='icon icon-close'
-        viewBox='0 0 18 18'
-    >
+    <svg fill='none' stroke='currentColor' class='' viewBox='0 0 18 18'>
         <circle cx='9' cy='9' r='8.5' stroke-opacity='.2'></circle>
         <path
             stroke-linecap='round'
@@ -200,7 +195,7 @@ export const FacebookIcon = () => (
     </svg>
 )
 export const InstagramIcon = () => (
-    <svg class='icon icon-instagram' viewBox='0 0 20 20'>
+    <svg class='' viewBox='0 0 20 20'>
         <path
             fill='currentColor'
             fill-rule='evenodd'
@@ -210,12 +205,23 @@ export const InstagramIcon = () => (
     </svg>
 )
 export const XIcon = () => (
-    <svg class='icon icon-twitter' viewBox='0 0 20 20'>
+    <svg class='' viewBox='0 0 20 20'>
         <path
             fill='currentColor'
             fill-rule='evenodd'
             d='M7.273 2.8 10.8 7.822 15.218 2.8h1.768l-5.4 6.139 5.799 8.254h-4.658l-3.73-5.31-4.671 5.31H2.558l5.654-6.427L2.615 2.8zm6.242 13.125L5.07 4.109h1.405l8.446 11.816z'
             clip-rule='evenodd'
         ></path>
+    </svg>
+)
+
+export const ArrowIcon = () => (
+    <svg class='' viewBox='0 0 12 12'>
+        <g fill='currentColor' class='nc-icon-wrapper'>
+            <path
+                d='M11.5,2H.5a.5.5,0,0,0-.412.783l5.5,8a.5.5,0,0,0,.824,0l5.5-8A.5.5,0,0,0,11.5,2Z'
+                fill='currentColor'
+            ></path>
+        </g>
     </svg>
 )
