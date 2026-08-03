@@ -59,6 +59,61 @@ const Home: Component = () => {
     const BestSellers: Component = () => {
         return <></>
     }
+    const ShopByFlavour: Component = () => {
+        interface FlavProps {
+            title: string
+            img: string
+        }
+        const Flav: Component<FlavProps> = R => {
+            return (
+                <div class='flavour-cmp'>
+                    <div class='texts'>
+                        <div class='title_hero'>{R.title}</div>
+
+                        <div class='now title_smaller'>Shop Now</div>
+                    </div>
+
+                    <img src={R.img} loading='lazy' decoding='async' />
+                </div>
+            )
+        }
+        return (
+            <section class='shop-by-flavour'>
+                <div class='flavours-wrapper'>
+                    <div class='header'>
+                        <div class='main section_title2'>Shop by Flavours</div>
+                        <div class='sub title_small '>
+                            Explore Our Wide Range of Flavours to Find Your
+                            Perfect Vape
+                        </div>
+                    </div>
+
+                    <div class='flavours'>
+                        <Flav
+                            img='/public/imgs/flavours/mint.webp'
+                            title='Mint & Menthol'
+                        />
+                        <Flav
+                            img='/public/imgs/flavours/tobacco.webp'
+                            title='Tobacco'
+                        />
+                        <Flav
+                            img='/public/imgs/flavours/beverage.webp'
+                            title='Beverage'
+                        />
+                        <Flav
+                            img='/public/imgs/flavours/dessert.webp'
+                            title='Dessert'
+                        />
+                        <Flav
+                            img='/public/imgs/flavours/fruit.webp'
+                            title='Fruity'
+                        />
+                    </div>
+                </div>
+            </section>
+        )
+    }
     const Faq: Component = () => {
         interface FaqItemProps {
             title: string
@@ -328,6 +383,8 @@ const Home: Component = () => {
             <NewProducts />
 
             <BestSellers />
+
+            <ShopByFlavour />
 
             <Faq />
 
