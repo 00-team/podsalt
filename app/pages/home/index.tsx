@@ -12,7 +12,7 @@ import { A } from '@solidjs/router'
 import { addAlert } from 'components/alert'
 import { HoverInp } from 'components/hoverInp'
 import { ArrowIcon, ArrowRightIcon } from 'icons/main'
-import { NEW_ARRIVALS, PRODUCT } from 'shared/products'
+import { BEST_SELLERS, NEW_ARRIVALS, PRODUCT } from 'shared/products'
 import './style/home.scss'
 
 const Home: Component = () => {
@@ -439,7 +439,7 @@ const Home: Component = () => {
     const ProductsRow: Component<ProductsRowProps> = R => {
         const ProductCmp: Component<PRODUCT> = O => {
             return (
-                <A href={O.href} class='product-cmp'>
+                <A href={O.href} class='product-cmp' style={{ '--c': O.color }}>
                     <div class='product-img-container'>
                         <div class='product-img'>
                             <img
@@ -555,7 +555,7 @@ const Home: Component = () => {
 
             <ShopByFlavour />
 
-            <ProductsRow header='Best Sellers' products={[]} />
+            <ProductsRow header='Best Sellers' products={BEST_SELLERS} />
 
             <AboutLine />
 
