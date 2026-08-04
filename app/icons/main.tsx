@@ -151,6 +151,7 @@ export const WarningIcon = () => (
 
 export const CloseIcon = () => (
     <svg
+        class='close-svg'
         xmlns='http://www.w3.org/2000/svg'
         width='25'
         height='25'
@@ -238,6 +239,20 @@ export const ArrowRightIcon = () => (
             fill-rule='evenodd'
             d='M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546'
             clip-rule='evenodd'
+        ></path>
+    </svg>
+)
+
+export const MenuIcon = () => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        class='icon icon-hamburger'
+        viewBox='0 0 18 16'
+    >
+        <path
+            fill='currentColor'
+            d='M1 .5a.5.5 0 1 0 0 1h15.71a.5.5 0 0 0 0-1zM.5 8a.5.5 0 0 1 .5-.5h15.71a.5.5 0 0 1 0 1H1A.5.5 0 0 1 .5 8m0 7a.5.5 0 0 1 .5-.5h15.71a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5'
         ></path>
     </svg>
 )

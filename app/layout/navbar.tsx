@@ -1,15 +1,56 @@
-import { Component, createSignal, For } from 'solid-js'
+import { Component, createSignal, For, Show } from 'solid-js'
 
 import { A } from '@solidjs/router'
 import { HoverInp } from 'components/hoverInp'
-import { AccountIcon, CartIcon, SearchIcon } from 'icons/main'
+import {
+    AccountIcon,
+    CartIcon,
+    CloseIcon,
+    MenuIcon,
+    SearchIcon,
+} from 'icons/main'
 import './style/navbar.scss'
 
 const Navbar: Component = () => {
     const [query, setQuery] = createSignal('')
 
     const MobileNav: Component = () => {
-        return <div class='mobile-nav-container'></div>
+        const [show, setShow] = createSignal(false)
+
+        return (
+            <>
+                <div class='mobile-nav-container'>
+                    <button
+                        class='open-nav icon'
+                        onclick={() => setShow(s => !s)}
+                    >
+                        <Show when={show()} fallback={<MenuIcon />}>
+                            <CloseIcon />
+                        </Show>
+                    </button>
+
+                    <img
+                        src='/public/imgs/logo_white.webp'
+                        class='logo'
+                        alt='pod salt prime logo'
+                        fetchpriority='high'
+                    />
+
+                    <div class='ctas'>
+                        <A class='icon' inactiveClass='' href='/products'>
+                            <SearchIcon />
+                        </A>
+                        <A class='icon' inactiveClass='' href='/products'>
+                            <CartIcon />
+                        </A>
+                    </div>
+                </div>
+                <div
+                    class='mobile-nav-links'
+                    classList={{ active: show() }}
+                ></div>
+            </>
+        )
     }
     const DesktopNav: Component = () => {
         type LINK = {
@@ -64,6 +105,7 @@ const Navbar: Component = () => {
                         src='/public/imgs/logo_white.webp'
                         class='logo'
                         alt='pod salt prime logo'
+                        fetchpriority='high'
                     />
 
                     <div class='search-container'>
@@ -153,11 +195,13 @@ const Navbar: Component = () => {
     }
 
     return (
-        <nav class='nav-container'>
-            <DesktopNav />
+        <>
             <MobileNav />
-            <PromotionBar />
-        </nav>
+            <nav class='nav-container'>
+                <DesktopNav />
+                <PromotionBar />
+            </nav>
+        </>
     )
 }
 
