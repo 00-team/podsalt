@@ -412,6 +412,169 @@ main.home-page-container {
         .section-head {
             margin-block: 1em;
         }
+
+        .products-wrapper {
+            width: clamp(0px, 100%, 1500px);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-content: center;
+
+            .product-cmp {
+                --c: var(--thirty-percent);
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                width: clamp(0px, 100%, 345px);
+                height: 545px;
+                border-radius: 1.5rem;
+
+                // background-color: var(--c);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+
+                .product-img-container {
+                    width: 100%;
+                    aspect-ratio: 1;
+                    flex-shrink: 0;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    padding: 1rem;
+
+                    .product-img {
+                        width: 100%;
+                        height: 100%;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        background-color: white;
+
+                        position: relative;
+                        z-index: 1;
+
+                        .overlay {
+                            display: flex;
+                            align-items: center;
+
+                            position: absolute;
+                            inset: 0;
+
+                            width: 100%;
+                            height: 100%;
+
+                            background-color: #e6e6e6b3;
+                            line-height: 1.5;
+
+                            text-align: left;
+
+                            font-weight: lighter;
+
+                            padding: 2rem;
+
+                            z-index: 2;
+
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                        }
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+
+                            transition: transform 0.5s ease;
+                        }
+                    }
+                }
+
+                .product-info {
+                    width: 100%;
+                    flex: 1 0 0;
+
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+
+                    padding-inline: 1rem;
+
+                    .product-title {
+                        font-size: 15px;
+                    }
+
+                    .product-price {
+                        margin-top: auto;
+                        margin-bottom: 1em;
+                    }
+
+                    .flavours {
+                        width: 100%;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 2px;
+
+                        padding-block: 0.75rem;
+
+                        font-weight: bold;
+
+                        .flavour {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            &:last-child {
+                                .divider {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .cta {
+                        width: 100%;
+
+                        color: white;
+
+                        border-radius: 11px;
+
+                        padding: 0.8rem;
+
+                        background-color: black;
+                        background-image: linear-gradient(
+                            180deg,
+                            rgba(75, 75, 75, 1) 3%,
+                            rgba(25, 25, 25, 1) 97%
+                        );
+                    }
+                }
+
+                &:hover {
+                    transition: box-shadow 0.3s ease;
+                    box-shadow: #63636333 0 2px 8px;
+
+                    .product-img-container {
+                        .product-img {
+                            .overlay {
+                                opacity: 1;
+                            }
+                            img {
+                                transform: scale(1.03);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .about-line {

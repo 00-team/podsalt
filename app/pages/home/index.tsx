@@ -12,7 +12,7 @@ import { A } from '@solidjs/router'
 import { addAlert } from 'components/alert'
 import { HoverInp } from 'components/hoverInp'
 import { ArrowIcon, ArrowRightIcon } from 'icons/main'
-import { PRODUCT } from 'shared/products'
+import { NEW_ARRIVALS, PRODUCT } from 'shared/products'
 import './style/home.scss'
 
 const Home: Component = () => {
@@ -437,10 +437,53 @@ const Home: Component = () => {
         products: PRODUCT[]
     }
     const ProductsRow: Component<ProductsRowProps> = R => {
+        const ProductCmp: Component<PRODUCT> = O => {
+            return (
+                <A href={O.href} class='product-cmp'>
+                    <div class='product-img-container'>
+                        <div class='product-img'>
+                            <img
+                                src={O.img}
+                                alt={O.alt}
+                                loading='lazy'
+                                decoding='async'
+                            />
+
+                            <div class='overlay title_small'>{O.desc}</div>
+                        </div>
+                    </div>
+
+                    <div class='product-info'>
+                        <div class='product-title title_small'>
+                            Pod Salt Bar X {O.name}
+                        </div>
+                        <div class='product-price title_hero2'>
+                            £ {String(O.price).concat('.00')}
+                        </div>
+
+                        <button class='cta title_small'>Choose options</button>
+
+                        <div class='flavours description'>
+                            <For each={O.flavours}>
+                                {f => (
+                                    <div class='flavour'>
+                                        <p> {f}</p>
+                                        <span class='divider'>,</span>
+                                    </div>
+                                )}
+                            </For>
+                        </div>
+                    </div>
+                </A>
+            )
+        }
+
         return (
             <section class='products-row-section'>
                 <div class='section-head section_title2'>{R.header}</div>
-                <div class='products-wrapper'></div>
+                <div class='products-wrapper'>
+                    <For each={R.products}>{p => <ProductCmp {...p} />}</For>
+                </div>
             </section>
         )
     }
@@ -508,7 +551,7 @@ const Home: Component = () => {
         <main class='home-page-container'>
             <Hero />
 
-            <ProductsRow header='New Arrivals' products={[]} />
+            <ProductsRow header='New Arrivals' products={NEW_ARRIVALS} />
 
             <ShopByFlavour />
 
