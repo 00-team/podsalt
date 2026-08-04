@@ -7,6 +7,7 @@ export type PRODUCT = {
     href: string
     price: number
     alt?: string
+    color: string
 }
 
 // TODO: FIX THE HREFS OF PRODUCTS
@@ -21,6 +22,7 @@ export const CHERRY_COLA_ICE: PRODUCT = {
     href: '/products/host-hybrid-cherry-cola-ice',
     price: 5,
     alt: 'Host Hybrid Cherry Cola Ice',
+    color: '#ca020e',
 }
 
 export const STRAWBERRY_ICE: PRODUCT = {
@@ -33,6 +35,7 @@ export const STRAWBERRY_ICE: PRODUCT = {
     href: '/products/host-hybrid-strawberry-ice',
     price: 5,
     alt: 'Host Hybrid Strawberry Ice',
+    color: '#d8438e',
 }
 
 export const PEACH_PUNCH_FIZZ: PRODUCT = {
@@ -45,6 +48,7 @@ export const PEACH_PUNCH_FIZZ: PRODUCT = {
     href: '/products/host-hybrid-peach-punch-fizz',
     price: 5,
     alt: 'Host Hybrid Peach Punch Fizz',
+    color: '#fca766',
 }
 
 export const TOBACCO_VANILLA_CARAMEL: PRODUCT = {
@@ -57,6 +61,7 @@ export const TOBACCO_VANILLA_CARAMEL: PRODUCT = {
     href: '/products/host-hybrid-tobacco-vanilla-caramel',
     price: 5,
     alt: 'Host Hybrid Tobacco Vanilla Caramel',
+    color: '#ff5e00',
 }
 
 export const SOUR_APPLE_ICE: PRODUCT = {
@@ -69,6 +74,7 @@ export const SOUR_APPLE_ICE: PRODUCT = {
     href: '/products/host-hybrid-sour-apple-ice',
     price: 5,
     alt: 'Host Hybrid Sour Apple Ice',
+    color: '#58ad0e',
 }
 
 export const GUMMY_BEARS: PRODUCT = {
@@ -81,6 +87,7 @@ export const GUMMY_BEARS: PRODUCT = {
     href: '/products/host-hybrid-gummy-bears',
     price: 5,
     alt: 'Host Hybrid Gummy Bears',
+    color: '#f3bdc4',
 }
 
 export const RED_MOJITO: PRODUCT = {
@@ -93,6 +100,7 @@ export const RED_MOJITO: PRODUCT = {
     href: '/products/host-hybrid-red-mojito',
     price: 5,
     alt: 'Host Hybrid Red Mojito',
+    color: '#302a41',
 }
 
 export const NEW_YORK_CHEESECAKE: PRODUCT = {
@@ -105,6 +113,7 @@ export const NEW_YORK_CHEESECAKE: PRODUCT = {
     href: '/products/host-hybrid-new-york-cheesecake',
     price: 5,
     alt: 'Host Hybrid New York Cheesecake',
+    color: '#e8b47d',
 }
 
 export const FOREST_FRUIT_LEATHER: PRODUCT = {
@@ -117,6 +126,7 @@ export const FOREST_FRUIT_LEATHER: PRODUCT = {
     href: '/products/host-hybrid-forest-fruit-leather',
     price: 5,
     alt: 'Host Hybrid Forest Fruit Leather',
+    color: '#a42c7b',
 }
 
 export const CACTUS_ICE: PRODUCT = {
@@ -129,6 +139,7 @@ export const CACTUS_ICE: PRODUCT = {
     href: '/products/host-hybrid-cactus-ice',
     price: 5,
     alt: 'Host Hybrid Cactus Ice',
+    color: '#3b354b',
 }
 
 export const ORANGE_FIZZ: PRODUCT = {
@@ -141,6 +152,7 @@ export const ORANGE_FIZZ: PRODUCT = {
     href: '/products/host-hybrid-orange-fizz',
     price: 5,
     alt: 'Host Hybrid Orange Fizz',
+    color: '#fc490d',
 }
 
 export const LEMON_LIME_ICE: PRODUCT = {
@@ -153,6 +165,7 @@ export const LEMON_LIME_ICE: PRODUCT = {
     href: '/products/host-hybrid-lemon-lime-ice',
     price: 5,
     alt: 'Host Hybrid Lemon Lime Ice',
+    color: '#dfc10e',
 }
 
 export const TRIPLE_BERRY_ICE: PRODUCT = {
@@ -165,6 +178,7 @@ export const TRIPLE_BERRY_ICE: PRODUCT = {
     href: '/products/host-hybrid-triple-berry-ice',
     price: 5,
     alt: 'Host Hybrid Triple Berry Ice',
+    color: '#2b1479',
 }
 
 export const CUCUMBER_LIME_ICE: PRODUCT = {
@@ -177,6 +191,7 @@ export const CUCUMBER_LIME_ICE: PRODUCT = {
     href: '/products/host-hybrid-cucumber-lime-ice',
     price: 5,
     alt: 'Host Hybrid Cucumber Lime Ice',
+    color: '#249635',
 }
 
 export const RED_WINE_ICE: PRODUCT = {
@@ -189,6 +204,7 @@ export const RED_WINE_ICE: PRODUCT = {
     href: '/products/host-hybrid-red-wine-ice',
     price: 5,
     alt: 'Host Hybrid Red Wine Ice',
+    color: '#43111e',
 }
 
 export const PINEAPPLE_ICE: PRODUCT = {
@@ -201,6 +217,7 @@ export const PINEAPPLE_ICE: PRODUCT = {
     href: '/products/host-hybrid-pineapple-ice',
     price: 5,
     alt: 'Host Hybrid Pineapple Ice',
+    color: '#7f6d21',
 }
 
 export const PRODUCTS: PRODUCT[] = [
