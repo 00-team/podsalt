@@ -1,4 +1,4 @@
-import { Component, createSignal, For, Show } from 'solid-js'
+import { Component, createSignal, For, JSX, Show } from 'solid-js'
 
 import { A } from '@solidjs/router'
 import { HoverInp } from 'components/hoverInp'
@@ -6,8 +6,11 @@ import {
     AccountIcon,
     CartIcon,
     CloseIcon,
+    FacebookIcon,
+    InstagramIcon,
     MenuIcon,
     SearchIcon,
+    XIcon,
 } from 'icons/main'
 import './style/navbar.scss'
 
@@ -64,6 +67,16 @@ const Navbar: Component = () => {
     const MobileNav: Component = () => {
         const [show, setShow] = createSignal(false)
 
+        interface SocialProps {
+            Icon: JSX.Element
+            link: string
+        }
+        const Social: Component<SocialProps> = R => (
+            <A href={R.link} class='social-cmp'>
+                {R.Icon}
+            </A>
+        )
+
         return (
             <>
                 <div class='mobile-nav-container'>
@@ -99,6 +112,20 @@ const Navbar: Component = () => {
                             <Link onClick={() => setShow(false)} {...link} />
                         )}
                     </For>
+                    <div class='socials'>
+                        <Social
+                            link='https://www.facebook.com/people/Pod-Salt/100064751330102/'
+                            Icon={<FacebookIcon />}
+                        />
+                        <Social
+                            link='https://www.instagram.com/podsaltofficial/'
+                            Icon={<InstagramIcon />}
+                        />
+                        <Social
+                            link='https://twitter.com/podsalt'
+                            Icon={<XIcon />}
+                        />
+                    </div>
                 </div>
             </>
         )

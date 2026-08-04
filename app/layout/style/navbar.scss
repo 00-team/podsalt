@@ -314,7 +314,6 @@ nav.nav-container {
     bottom: 0;
     left: 0;
 
-    display: flex;
     flex-direction: column;
 
     padding-top: 1rem;
@@ -331,10 +330,6 @@ nav.nav-container {
         transform: translateX(0%);
     }
 
-    @media screen and (max-width: 768px) {
-        display: flex;
-    }
-
     .nav-link {
         width: fit-content;
         text-align: left;
@@ -348,5 +343,35 @@ nav.nav-container {
         &:hover {
             background-color: rgba(0, 0, 0, 0.04);
         }
+    }
+
+    .socials {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        padding: 1rem 1.5rem;
+
+        .social-cmp {
+            width: 38px;
+            height: 38px;
+
+            color: black;
+
+            border: 1px solid black;
+            border-radius: 100vmax;
+
+            padding: 0.5rem;
+
+            &:hover {
+                svg {
+                    scale: 1.1;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        display: flex;
     }
 }
