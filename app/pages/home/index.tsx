@@ -13,6 +13,7 @@ import { addAlert } from 'components/alert'
 import { HoverInp } from 'components/hoverInp'
 import { ArrowIcon, ArrowRightIcon } from 'icons/main'
 import './style/home.scss'
+import { PRODUCT } from 'shared/products'
 
 const Home: Component = () => {
     const Hero: Component = () => {
@@ -55,12 +56,7 @@ const Home: Component = () => {
             </section>
         )
     }
-    const NewProducts: Component = () => {
-        return <></>
-    }
-    const BestSellers: Component = () => {
-        return <></>
-    }
+
     const ShopByFlavour: Component = () => {
         interface FlavProps {
             title: string
@@ -435,15 +431,29 @@ const Home: Component = () => {
         )
     }
 
+    interface ProductsRowProps {
+        header: string
+
+        products: PRODUCT[]
+    }
+    const ProductsRow: Component<ProductsRowProps> = R => {
+        return (
+            <section class='products-row-section'>
+                <div class='section-head section_title2'>{R.header}</div>
+                <div class='products-wrapper'></div>
+            </section>
+        )
+    }
+
     return (
         <main class='home-page-container'>
             <Hero />
 
-            <NewProducts />
-
-            <BestSellers />
+            <ProductsRow header='New Arrivals' products={[]} />
 
             <ShopByFlavour />
+
+            {/* <ProductsRow /> */}
 
             <Faq />
 
