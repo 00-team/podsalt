@@ -9,9 +9,6 @@ footer.footer-container {
 
     background-color: var(--thirty-percent);
 
-    // debug
-    margin-top: auto;
-
     color: white;
 
     .footer-head {
@@ -148,6 +145,10 @@ footer.footer-container {
 
             .footer-logos {
                 align-items: center;
+
+                img {
+                    margin-bottom: 1rem;
+                }
 
                 .awards {
                     justify-content: center;
