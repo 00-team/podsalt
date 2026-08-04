@@ -9,7 +9,9 @@ import {
 } from 'solid-js'
 
 import { A } from '@solidjs/router'
-import { ArrowIcon } from 'icons/main'
+import { addAlert } from 'components/alert'
+import { HoverInp } from 'components/hoverInp'
+import { ArrowIcon, ArrowRightIcon } from 'icons/main'
 import './style/home.scss'
 
 const Home: Component = () => {
@@ -373,7 +375,64 @@ const Home: Component = () => {
         )
     }
     const Sub: Component = () => {
-        return <></>
+        const [email, setEmail] = createSignal('')
+
+        const onSubmit: JSX.EventHandlerUnion<
+            HTMLFormElement,
+            SubmitEvent
+        > = e => {
+            e.preventDefault()
+
+            const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email().trim())
+
+            if (!validEmail) {
+                addAlert({
+                    type: 'error',
+                    timeout: 3,
+                    subject: 'Please enter a valid Email.',
+                })
+                return
+            }
+
+            addAlert({
+                type: 'success',
+                timeout: 3,
+                subject: 'Thanks for subscribing!',
+            })
+
+            setEmail('')
+        }
+
+        return (
+            <section class='subscribe-section'>
+                <form onsubmit={onSubmit} class='subscribe-wrapper'>
+                    <div class='sub-head section_title2'>
+                        Subscribe to our emails
+                    </div>
+                    <div class='sub-title title'>
+                        Be the first to know about new collections and exclusive
+                        offers.
+                    </div>
+
+                    <div class='input-wrapper'>
+                        <HoverInp
+                            acitve={!!email()}
+                            onInp={v => setEmail(v)}
+                            inpType='text'
+                            autoCmp='email'
+                            Icon={null}
+                            holder='Email'
+                            name='contact[email]'
+                            class='inp'
+                            value={email()}
+                        />
+                        <button class='input-cta icon'>
+                            <ArrowRightIcon />
+                        </button>
+                    </div>
+                </form>
+            </section>
+        )
     }
 
     return (
