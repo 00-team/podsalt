@@ -12,7 +12,54 @@ import {
 import './style/navbar.scss'
 
 const Navbar: Component = () => {
-    const [query, setQuery] = createSignal('')
+    type LINK = {
+        link: string
+        text: string
+    }
+    const LINKS: LINK[] = [
+        {
+            link: '/',
+            text: 'Home',
+        },
+        {
+            text: 'E-Liquids',
+            link: '/products',
+        },
+        {
+            link: '/blog',
+            text: 'Blog',
+        },
+        {
+            link: '/#faq',
+            text: 'Faq',
+        },
+        {
+            link: '/contact',
+            text: 'Get In Touch',
+        },
+        {
+            link: '/products',
+            text: 'shop by flavour',
+        },
+    ]
+
+    interface LinkProps extends LINK {
+        onClick?(): void
+    }
+    const Link: Component<LinkProps> = R => {
+        return (
+            <A
+                onclick={R.onClick}
+                href={R.link}
+                end={R.link == '/'}
+                class='nav-link title'
+                classList={{ [R.text]: true }}
+                inactiveClass=''
+            >
+                {R.text}
+            </A>
+        )
+    }
 
     const MobileNav: Component = () => {
         const [show, setShow] = createSignal(false)
@@ -30,6 +77,7 @@ const Navbar: Component = () => {
                     </button>
 
                     <img
+                        onclick={() => (location.href = '/')}
                         src='/public/imgs/logo_white.webp'
                         class='logo'
                         alt='pod salt prime logo'
@@ -45,58 +93,18 @@ const Navbar: Component = () => {
                         </A>
                     </div>
                 </div>
-                <div
-                    class='mobile-nav-links'
-                    classList={{ active: show() }}
-                ></div>
+                <div class='mobile-nav-links' classList={{ active: show() }}>
+                    <For each={LINKS}>
+                        {link => (
+                            <Link onClick={() => setShow(false)} {...link} />
+                        )}
+                    </For>
+                </div>
             </>
         )
     }
     const DesktopNav: Component = () => {
-        type LINK = {
-            link: string
-            text: string
-        }
-        const LINKS: LINK[] = [
-            {
-                link: '/',
-                text: 'Home',
-            },
-            {
-                text: 'E-Liquids',
-                link: '/products',
-            },
-            {
-                link: '/blog',
-                text: 'Blog',
-            },
-            {
-                link: '/#fap',
-                text: 'Faq',
-            },
-            {
-                link: '/contact',
-                text: 'Get In Touch',
-            },
-            {
-                link: '/products',
-                text: 'shop by flavour',
-            },
-        ]
-
-        const Link: Component<LINK> = R => {
-            return (
-                <A
-                    href={R.link}
-                    end={R.link == '/'}
-                    class='nav-link title'
-                    classList={{ [R.text]: true }}
-                    inactiveClass=''
-                >
-                    {R.text}
-                </A>
-            )
-        }
+        const [query, setQuery] = createSignal('')
 
         return (
             <div class='desktop-nav-container'>

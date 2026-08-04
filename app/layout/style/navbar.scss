@@ -314,6 +314,11 @@ nav.nav-container {
     bottom: 0;
     left: 0;
 
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 1rem;
+
     background-color: white;
 
     z-index: 99;
@@ -328,5 +333,20 @@ nav.nav-container {
 
     @media screen and (max-width: 768px) {
         display: flex;
+    }
+
+    .nav-link {
+        width: fit-content;
+        text-align: left;
+        font-size: 18px;
+        font-weight: lighter;
+
+        padding: 1em 2rem;
+
+        color: black;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
     }
 }
