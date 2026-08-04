@@ -12,8 +12,8 @@ import { A } from '@solidjs/router'
 import { addAlert } from 'components/alert'
 import { HoverInp } from 'components/hoverInp'
 import { ArrowIcon, ArrowRightIcon } from 'icons/main'
-import './style/home.scss'
 import { PRODUCT } from 'shared/products'
+import './style/home.scss'
 
 const Home: Component = () => {
     const Hero: Component = () => {
@@ -445,6 +445,65 @@ const Home: Component = () => {
         )
     }
 
+    const AboutLine: Component = () => {
+        return (
+            <section class='about-line'>
+                <div class='section-head section_title2'>
+                    <span>About This Line</span>
+                </div>
+                <div class='section-wrapper'>
+                    <div class='text-wrapper title'>
+                        <p>
+                            <strong>
+                                Discover a refined line of premium nicotine
+                                salts
+                            </strong>{' '}
+                            crafted for those who value both exceptional flavor
+                            and a smoother experience. Each formulation begins
+                            with nicotine combined with carefully selected
+                            organic acids, creating a salt base that delivers a
+                            noticeably gentler throat sensation and more
+                            comfortable delivery—even at higher
+                            strengths—compared with traditional freebase
+                            nicotine.
+                        </p>
+
+                        <p>
+                            This organic approach prioritizes purity and
+                            refinement, allowing the true character of every
+                            flavor to shine without harshness. From bright fruit
+                            profiles and cooling ice variations to rich dessert
+                            and complex blended notes, the range is designed to
+                            offer consistent, high-quality performance across a
+                            wide spectrum of tastes.
+                        </p>
+
+                        <p>
+                            Every liquid in the collection is developed with
+                            precision-balanced natural and artificial
+                            flavorings, ensuring authentic, layered profiles
+                            that remain clean and satisfying from the first draw
+                            to the last. The result is an elevated,
+                            adult-oriented nicotine salt experience that
+                            combines smoothness, flavor fidelity, and everyday
+                            reliability in one thoughtfully crafted lineup.
+                        </p>
+                    </div>
+
+                    <div class='img-container'>
+                        <img
+                            src='/public/imgs/logo_white.webp'
+                            class='logo'
+                            alt='pod salt prime logo'
+                            loading='lazy'
+                            decoding='async'
+                        />
+                    </div>
+                </div>
+            </section>
+        )
+    }
+
     return (
         <main class='home-page-container'>
             <Hero />
@@ -453,7 +512,9 @@ const Home: Component = () => {
 
             <ShopByFlavour />
 
-            {/* <ProductsRow /> */}
+            <ProductsRow header='Best Sellers' products={[]} />
+
+            <AboutLine />
 
             <Faq />
 
