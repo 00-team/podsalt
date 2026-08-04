@@ -192,8 +192,6 @@ nav.nav-container {
         align-items: center;
         justify-content: center;
 
-        padding-block: 1rem 1.3rem;
-
         background-color: var(--thirty-percent);
 
         .promotion-bar-wrapper {
@@ -205,6 +203,8 @@ nav.nav-container {
             flex-wrap: wrap;
             gap: 1rem;
             align-content: center;
+
+            padding-block: 1rem 1.3rem;
 
             color: white;
 
@@ -233,6 +233,28 @@ nav.nav-container {
             .exc-bar {
                 img {
                     height: 33px;
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                flex-wrap: unset;
+
+                -webkit-overflow-scrolling: touch;
+                -webkit-scroll-snap-type: x mandatory;
+                scroll-padding-inline: 1rem;
+                scroll-snap-type: x mandatory;
+                overflow-x: auto;
+
+                .prom-cmp,
+                .exc-bar {
+                    flex-shrink: 0;
+                    scroll-snap-stop: always;
+                    scroll-snap-align: start;
+
+                    justify-content: center;
+                    width: 100%;
+                    flex: 1 0 0;
+                    min-width: 100%;
                 }
             }
         }

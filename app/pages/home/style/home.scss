@@ -26,6 +26,10 @@ main.home-page-container {
             align-items: center;
             justify-content: center;
 
+            @media screen and (max-width: 768px) {
+                aspect-ratio: 1;
+            }
+
             img {
                 width: 100%;
                 height: 100%;
@@ -174,7 +178,7 @@ main.home-page-container {
     }
 
     .faq-section {
-        margin-top: 2rem;
+        margin-top: 3rem;
         margin-bottom: 4rem;
 
         width: 100%;
@@ -190,6 +194,10 @@ main.home-page-container {
             flex-direction: column;
             align-items: center;
             gap: 1rem;
+
+            padding-inline: 1rem;
+
+            text-align: center;
 
             .sub {
                 font-weight: lighter;
@@ -410,6 +418,8 @@ main.home-page-container {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        padding-inline: 1rem;
 
         .section-head {
             margin-block: 1em;
@@ -676,7 +686,8 @@ main.home-page-container {
 
         @media screen and (max-width: 768px) {
             .section-wrapper {
-                flex-direction: column;
+                flex-direction: column-reverse;
+                gap: 2rem;
                 align-items: center;
 
                 .img-container {

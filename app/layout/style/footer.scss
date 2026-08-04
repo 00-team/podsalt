@@ -140,6 +140,25 @@ footer.footer-container {
                 }
             }
         }
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+
+            .footer-logos {
+                align-items: center;
+
+                .awards {
+                    justify-content: center;
+                }
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     }
 
     .divider {
