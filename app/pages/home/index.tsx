@@ -353,7 +353,7 @@ const Home: Component = () => {
         ]
 
         return (
-            <section class='faq-section'>
+            <section class='faq-section' id='faq'>
                 <div class='faq-header'>
                     <div class='section_title2'>Frequently Asked Questions</div>
                     <div class='sub title_hero2'>
