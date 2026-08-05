@@ -439,7 +439,11 @@ const Home: Component = () => {
     const ProductsRow: Component<ProductsRowProps> = R => {
         const ProductCmp: Component<PRODUCT> = O => {
             return (
-                <A href={O.href} class='product-cmp' style={{ '--c': O.color }}>
+                <A
+                    href={`/products/${O.id}`}
+                    class='product-cmp'
+                    style={{ '--c': O.color }}
+                >
                     <div class='product-img-container'>
                         <div class='product-img'>
                             <img
