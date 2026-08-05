@@ -1,8 +1,10 @@
-import { Component, createMemo, For, onMount } from 'solid-js'
+import { Component, createMemo, For, onMount, Show } from 'solid-js'
 
 import { A } from '@solidjs/router'
-import { ArrowDown2Icon } from 'icons/main'
+import { IsMobile } from 'components/helpers'
+import { ArrowDown2Icon, CloseIcon, FiltersIcon } from 'icons/main'
 import { BEST_SELLERS, NEW_ARRIVALS, PRODUCT, PRODUCTS } from 'shared/products'
+import { isMobile } from 'shared/tools'
 import { createStore } from 'solid-js/store'
 import './style/products.scss'
 
@@ -26,12 +28,14 @@ const Products: Component = () => {
         filters: FILTER[]
         filtered: string
         sortBy: SORT_BY
+        showMobile: boolean
     }
 
     const [state, setState] = createStore<STATE>({
         sortBy: 'most-relevant',
         filtered: '',
         filters: [],
+        showMobile: false,
     })
 
     onMount(() => {
@@ -141,57 +145,149 @@ const Products: Component = () => {
         )
     }
 
+    const Header: Component = () => (
+        <div class='products-header'>
+            <div class='section_title2'>E-Liquids</div>
+            <p class='sub title'>
+                Explore the best E-Liquids available in the UK, in a variety of
+                nicotine strengths, including{' '}
+                <a href='https://podsaltuk.myshopify.com/collections/nicotine-free-e-liquid'>
+                    nicotine-free E-Liquid
+                </a>{' '}
+                and flavours. Made from high-quality ingredients and
+                manufactured in the UK, stocked locally and worldwide. Pod
+                Salt’s range of{' '}
+                <a href='https://podsaltuk.myshopify.com/collections/nic-salt-e-liquids'>
+                    Nic Salts
+                </a>{' '}
+                and{' '}
+                <a href='https://podsaltuk.myshopify.com/collections/shortfill-e-liquids'>
+                    Shortfill
+                </a>{' '}
+                E-Liquids hit the spot for smokers who love flavour and enjoy a
+                smooth vape.
+            </p>
+        </div>
+    )
+
+    const PcFilters: Component = () => (
+        <div class='pc-products-filters'>
+            <div class='filters-title title'>Flavours</div>
+
+            <For each={state.filters}>
+                {filter => (
+                    <label class='filter-chip title_smaller'>
+                        <input
+                            type='checkbox'
+                            name='flavour-filter'
+                            checked={state.filtered === filter.name}
+                            onChange={() => {
+                                if (state.filtered == filter.name) {
+                                    setState('filtered', '')
+                                } else {
+                                    setState('filtered', filter.name)
+                                }
+                            }}
+                        />
+                        <span>
+                            {filter.name} ({filter.count})
+                        </span>
+                    </label>
+                )}
+            </For>
+        </div>
+    )
+    const SortCta: Component = () => (
+        <div class='sort-cta'>
+            <div class='holder title_smaller'>Sort By:</div>
+            <div class='select-wrapper'>
+                <select
+                    class='select title_smaller'
+                    id='SortBy'
+                    value={state.sortBy}
+                    onChange={e =>
+                        setState('sortBy', e.currentTarget.value as SORT_BY)
+                    }
+                >
+                    <option value='most-relevant'>New Arrivals</option>
+                    <option value='new-arrivals'>
+                        New Arrivals (explicit)
+                    </option>
+                    <option value='best-selling'>Best selling</option>
+                    <option value='title-ascending'>Alphabetically, A-Z</option>
+                    <option value='title-descending'>
+                        Alphabetically, Z-A
+                    </option>
+                    <option value='price-ascending'>Price, low to high</option>
+                    <option value='price-descending'>Price, high to low</option>
+                    <option value='created-ascending'>Date, old to new</option>
+                </select>
+
+                <div class='icon'>
+                    <ArrowDown2Icon />
+                </div>
+            </div>
+        </div>
+    )
+
+    const MobileFiltersCmp: Component = () => {
+        return (
+            <div
+                class='filters-mobile-cmp'
+                classList={{ active: state.showMobile }}
+            >
+                <div class='mobile-filters-wrapper'>
+                    <div class='filters-header'>
+                        <button onclick={() => setState('showMobile', false)}>
+                            <CloseIcon />
+                        </button>
+                        <div class='main title_hero2'>Filter and sort</div>
+                        <p class='count title_smaller'>
+                            {PRODUCTS.length} products
+                        </p>
+                    </div>
+
+                    <div class='filters-list'>
+                        <SortCta />
+
+                        <For each={state.filters}>
+                            {filter => (
+                                <label class='filter-chip title_small'>
+                                    <input
+                                        type='checkbox'
+                                        name='flavour-filter'
+                                        checked={state.filtered === filter.name}
+                                        onChange={() => {
+                                            if (state.filtered == filter.name) {
+                                                setState('filtered', '')
+                                            } else {
+                                                setState(
+                                                    'filtered',
+                                                    filter.name
+                                                )
+                                            }
+                                        }}
+                                    />
+                                    <span>
+                                        {filter.name} ({filter.count})
+                                    </span>
+                                </label>
+                            )}
+                        </For>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <main class='products-page-container'>
-            <div class='products-header'>
-                <div class='section_title2'>E-Liquids</div>
-                <p class='sub title'>
-                    Explore the best E-Liquids available in the UK, in a variety
-                    of nicotine strengths, including{' '}
-                    <a href='https://podsaltuk.myshopify.com/collections/nicotine-free-e-liquid'>
-                        nicotine-free E-Liquid
-                    </a>{' '}
-                    and flavours. Made from high-quality ingredients and
-                    manufactured in the UK, stocked locally and worldwide. Pod
-                    Salt’s range of{' '}
-                    <a href='https://podsaltuk.myshopify.com/collections/nic-salt-e-liquids'>
-                        Nic Salts
-                    </a>{' '}
-                    and{' '}
-                    <a href='https://podsaltuk.myshopify.com/collections/shortfill-e-liquids'>
-                        Shortfill
-                    </a>{' '}
-                    E-Liquids hit the spot for smokers who love flavour and
-                    enjoy a smooth vape.
-                </p>
-            </div>
+            <Header />
 
             <div class='products-container'>
-                <div class='products-filters'>
-                    <div class='filters-title title'>Flavours</div>
-
-                    <For each={state.filters}>
-                        {filter => (
-                            <label class='filter-chip title_smaller'>
-                                <input
-                                    type='checkbox'
-                                    name='flavour-filter'
-                                    checked={state.filtered === filter.name}
-                                    onChange={() => {
-                                        if (state.filtered == filter.name) {
-                                            setState('filtered', '')
-                                        } else {
-                                            setState('filtered', filter.name)
-                                        }
-                                    }}
-                                />
-                                <span>
-                                    {filter.name} ({filter.count})
-                                </span>
-                            </label>
-                        )}
-                    </For>
-                </div>
+                <IsMobile not>
+                    <PcFilters />
+                </IsMobile>
 
                 <div class='products-wrapper'>
                     <div class='products-sort-container'>
@@ -200,52 +296,27 @@ const Products: Component = () => {
                                 {sortedProducts().length} products
                             </div>
 
-                            <div class='sort-cta'>
-                                <div class='holder title_smaller'>Sort By:</div>
-                                <div class='select-wrapper'>
-                                    <select
-                                        class='select title_smaller'
-                                        id='SortBy'
-                                        value={state.sortBy}
-                                        onChange={e =>
-                                            setState(
-                                                'sortBy',
-                                                e.currentTarget.value as SORT_BY
-                                            )
-                                        }
-                                    >
-                                        <option value='most-relevant'>
-                                            New Arrivals
-                                        </option>
-                                        <option value='new-arrivals'>
-                                            New Arrivals (explicit)
-                                        </option>
-                                        <option value='best-selling'>
-                                            Best selling
-                                        </option>
-                                        <option value='title-ascending'>
-                                            Alphabetically, A-Z
-                                        </option>
-                                        <option value='title-descending'>
-                                            Alphabetically, Z-A
-                                        </option>
-                                        <option value='price-ascending'>
-                                            Price, low to high
-                                        </option>
-                                        <option value='price-descending'>
-                                            Price, high to low
-                                        </option>
-                                        <option value='created-ascending'>
-                                            Date, old to new
-                                        </option>
-                                    </select>
-
-                                    <div class='icon'>
-                                        <ArrowDown2Icon />
-                                    </div>
-                                </div>
-                            </div>
+                            <IsMobile fallback={<SortCta />}>
+                                <button
+                                    onclick={() => setState('showMobile', true)}
+                                    class='mobile-filters-cta title_small'
+                                >
+                                    <FiltersIcon />
+                                    Filter and sort
+                                </button>
+                            </IsMobile>
                         </div>
+
+                        <Show when={isMobile() && state.filtered}>
+                            <button
+                                onclick={() => {
+                                    setState('filtered', '')
+                                }}
+                                class='clear-filters title_small'
+                            >
+                                Remove all
+                            </button>
+                        </Show>
                     </div>
 
                     <div class='products-list'>
@@ -255,6 +326,8 @@ const Products: Component = () => {
                     </div>
                 </div>
             </div>
+
+            <MobileFiltersCmp />
         </main>
     )
 }
