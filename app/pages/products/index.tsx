@@ -1,16 +1,67 @@
-import { Component, createMemo, createSignal, For } from 'solid-js'
+import { Component, createMemo, For, onMount } from 'solid-js'
 
 import { A } from '@solidjs/router'
 import { ArrowDown2Icon } from 'icons/main'
 import { BEST_SELLERS, NEW_ARRIVALS, PRODUCT, PRODUCTS } from 'shared/products'
+import { createStore } from 'solid-js/store'
 import './style/products.scss'
 
 const Products: Component = () => {
-    const [sortBy, setSortBy] = createSignal('most-relevant')
+    type SORT_BY =
+        | 'new-arrivals'
+        | 'best-selling'
+        | 'title-ascending'
+        | 'title-descending'
+        | 'price-ascending'
+        | 'price-descending'
+        | 'created-ascending'
+        | 'most-relevant'
 
-    const sortedProducts = createMemo(() => {
+    type FILTER = {
+        name: string
+        count: number
+    }
+
+    type STATE = {
+        filters: FILTER[]
+        filtered: string
+        sortBy: SORT_BY
+    }
+
+    const [state, setState] = createStore<STATE>({
+        sortBy: 'most-relevant',
+        filtered: '',
+        filters: [],
+    })
+
+    onMount(() => {
+        const flavourMap = new Map<string, number>()
+
+        for (const product of PRODUCTS) {
+            for (const flavour of product.flavours) {
+                flavourMap.set(flavour, (flavourMap.get(flavour) ?? 0) + 1)
+            }
+        }
+
+        setState(
+            'filters',
+            [...flavourMap.entries()].map(([name, count]) => ({
+                name,
+                count,
+            }))
+        )
+    })
+
+    const filteredItems = createMemo((): PRODUCT[] => {
         const items = [...PRODUCTS]
-        const sort = sortBy()
+        if (!state.filtered) return items
+
+        return items.filter(p => p.flavours.includes(state.filtered))
+    })
+
+    const sortedProducts = createMemo((): PRODUCT[] => {
+        const items = [...filteredItems()]
+        const sort = state.sortBy
 
         const byOrder = (list: PRODUCT[]) => {
             const order = new Map(list.map((p, i) => [p.name, i]))
@@ -79,7 +130,7 @@ const Products: Component = () => {
                         <For each={O.flavours}>
                             {f => (
                                 <div class='flavour'>
-                                    <p> {f}</p>
+                                    <p>{f}</p>
                                     <span class='divider'>,</span>
                                 </div>
                             )}
@@ -116,12 +167,37 @@ const Products: Component = () => {
             </div>
 
             <div class='products-container'>
-                <div class='products-filters'></div>
+                <div class='products-filters'>
+                    <div class='filters-title title'>Flavours</div>
+
+                    <For each={state.filters}>
+                        {filter => (
+                            <label class='filter-chip title_smaller'>
+                                <input
+                                    type='checkbox'
+                                    name='flavour-filter'
+                                    checked={state.filtered === filter.name}
+                                    onChange={() => {
+                                        if (state.filtered == filter.name) {
+                                            setState('filtered', '')
+                                        } else {
+                                            setState('filtered', filter.name)
+                                        }
+                                    }}
+                                />
+                                <span>
+                                    {filter.name} ({filter.count})
+                                </span>
+                            </label>
+                        )}
+                    </For>
+                </div>
+
                 <div class='products-wrapper'>
                     <div class='products-sort-container'>
                         <div class='products-sort'>
                             <div class='products-count title_smaller'>
-                                {PRODUCTS.length} products
+                                {sortedProducts().length} products
                             </div>
 
                             <div class='sort-cta'>
@@ -130,13 +206,19 @@ const Products: Component = () => {
                                     <select
                                         class='select title_smaller'
                                         id='SortBy'
-                                        value={sortBy()}
+                                        value={state.sortBy}
                                         onChange={e =>
-                                            setSortBy(e.currentTarget.value)
+                                            setState(
+                                                'sortBy',
+                                                e.currentTarget.value as SORT_BY
+                                            )
                                         }
                                     >
                                         <option value='most-relevant'>
                                             New Arrivals
+                                        </option>
+                                        <option value='new-arrivals'>
+                                            New Arrivals (explicit)
                                         </option>
                                         <option value='best-selling'>
                                             Best selling
@@ -165,6 +247,7 @@ const Products: Component = () => {
                             </div>
                         </div>
                     </div>
+
                     <div class='products-list'>
                         <For each={sortedProducts()}>
                             {p => <ProductCmp {...p} />}

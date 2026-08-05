@@ -45,19 +45,41 @@ main.products-page-container {
         width: clamp(0px, 100%, 1500px);
 
         .products-filters {
+            height: fit-content;
             width: clamp(0px, 100%, 300px);
+
             flex-shrink: 0;
 
             display: flex;
             flex-direction: column;
 
-            // debug
-            height: 600px;
-
             background: #f4f4f4;
-            padding: 3rem 2rem 2rem;
+            padding: 2rem 2rem 2rem;
+            padding-left: 1.5rem;
             border: 0.1rem solid #d7d7d7;
             border-radius: 1rem;
+
+            .filters-title {
+                font-weight: lighter;
+                margin-bottom: 0.5rem;
+            }
+            .filter-chip {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+
+                margin-left: 0.2rem;
+                font-weight: lighter;
+
+                &:not(:last-child) {
+                    margin-bottom: 0.5rem;
+                }
+
+                span {
+                    font-weight: lighter;
+                    opacity: 0.7;
+                }
+            }
         }
 
         .products-wrapper {
