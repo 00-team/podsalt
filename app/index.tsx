@@ -11,6 +11,7 @@ import './style/base.scss'
 import './style/theme.scss'
 
 const Home = lazy(() => import('pages/home'))
+const Products = lazy(() => import('pages/products'))
 const UnderConstruction = lazy(() => import('pages/underConstruction'))
 
 const Rootlayout = (P: RouteSectionProps) => {
@@ -30,6 +31,7 @@ const Root = () => {
         <>
             <Router base='/' root={Rootlayout}>
                 <Route path={'/'} component={Home}></Route>
+                <Route path={'/products'} component={Products}></Route>
 
                 <Route path='*' component={UnderConstruction} />
             </Router>
