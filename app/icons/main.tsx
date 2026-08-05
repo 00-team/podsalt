@@ -256,3 +256,14 @@ export const MenuIcon = () => (
         ></path>
     </svg>
 )
+
+export const ArrowDown2Icon = () => (
+    <svg class='icon icon-caret' viewBox='0 0 12 12'>
+        <g fill='currentColor' class='nc-icon-wrapper'>
+            <path
+                d='M11.5,2H.5a.5.5,0,0,0-.412.783l5.5,8a.5.5,0,0,0,.824,0l5.5-8A.5.5,0,0,0,11.5,2Z'
+                fill='currentColor'
+            ></path>
+        </g>
+    </svg>
+)
