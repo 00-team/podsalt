@@ -204,7 +204,7 @@ export const RED_WINE_ICE: PRODUCT = {
     href: '/products/host-hybrid-red-wine-ice',
     price: 5,
     alt: 'Host Hybrid Red Wine Ice',
-    color: '#43111e',
+    color: '#ff0000',
 }
 
 export const PINEAPPLE_ICE: PRODUCT = {
