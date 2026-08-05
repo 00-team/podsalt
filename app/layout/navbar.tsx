@@ -18,6 +18,7 @@ const Navbar: Component = () => {
     type LINK = {
         link: string
         text: string
+        unacitve?: boolean
     }
     const LINKS: LINK[] = [
         {
@@ -43,6 +44,7 @@ const Navbar: Component = () => {
         {
             link: '/products',
             text: 'shop by flavour',
+            unacitve: true,
         },
     ]
 
@@ -58,6 +60,7 @@ const Navbar: Component = () => {
                 class='nav-link title'
                 classList={{ [R.text]: true }}
                 inactiveClass=''
+                activeClass={R.unacitve ? '' : 'active'}
             >
                 {R.text}
             </A>
