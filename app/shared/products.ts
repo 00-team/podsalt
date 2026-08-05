@@ -226,7 +226,7 @@ export const MELON_SPLASH: PRODUCT = {
     desc: 'Sweet mixed melon with a smooth, refreshing finish.',
     description:
         'A vibrant blend of juicy melon flavors delivering natural sweetness and a clean, refreshing vape. Soft fruity notes and a balanced finish make it an easy all-day choice for melon lovers.',
-    img: '/images/products/melon-splash.jpg',
+    img: '/public/imgs/products/melon-splash.webp',
     href: '/products/pod-salt-prime-melon-splash',
     price: 5,
     alt: 'Pod Salt Prime Melon Splash',
@@ -239,7 +239,7 @@ export const MANGO_SMOOTHIE: PRODUCT = {
     desc: 'Creamy ripe mango blended into a rich tropical smoothie.',
     description:
         'Luscious ripe mango combines with a silky smoothie-style finish for a rich tropical experience. Sweet, juicy, and velvety from the first inhale to the last.',
-    img: '/images/products/mango-smoothie.jpg',
+    img: '/public/imgs/products/mango-smoothie.webp',
     href: '/products/pod-salt-prime-mango-smoothie',
     price: 5,
     alt: 'Pod Salt Prime Mango Smoothie',
@@ -252,7 +252,7 @@ export const KIWI_GUAVA_ICE: PRODUCT = {
     desc: 'Exotic kiwi and guava finished with an icy cooling sensation.',
     description:
         'Tangy kiwi and sweet tropical guava create a bright fruit blend, while a crisp icy finish keeps every puff refreshing. A balanced tropical profile with just the right amount of cooling.',
-    img: '/images/products/kiwi-guava-ice.jpg',
+    img: '/public/imgs/products/kiwi-guava-ice.webp',
     href: '/products/pod-salt-prime-kiwi-guava-ice',
     price: 5,
     alt: 'Pod Salt Prime Kiwi Guava Ice',
@@ -265,7 +265,7 @@ export const CHERRY_ICE: PRODUCT = {
     desc: 'Bold sweet cherry complemented by a crisp icy finish.',
     description:
         'Rich ripe cherry delivers deep fruit sweetness with a slight tart edge, while an icy finish adds freshness without overpowering the flavor. Smooth, vibrant, and refreshing throughout.',
-    img: '/images/products/cherry-ice.jpg',
+    img: '/public/imgs/products/cherry-ice.webp',
     href: '/products/pod-salt-prime-cherry-ice',
     price: 5,
     alt: 'Pod Salt Prime Cherry Ice',
