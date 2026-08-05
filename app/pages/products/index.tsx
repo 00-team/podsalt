@@ -1,10 +1,54 @@
-import { Component, For } from 'solid-js'
+import { Component, createMemo, createSignal, For } from 'solid-js'
 
 import { A } from '@solidjs/router'
-import { PRODUCT, PRODUCTS } from 'shared/products'
+import { ArrowDown2Icon } from 'icons/main'
+import { BEST_SELLERS, NEW_ARRIVALS, PRODUCT, PRODUCTS } from 'shared/products'
 import './style/products.scss'
 
 const Products: Component = () => {
+    const [sortBy, setSortBy] = createSignal('most-relevant')
+
+    const sortedProducts = createMemo(() => {
+        const items = [...PRODUCTS]
+        const sort = sortBy()
+
+        const byOrder = (list: PRODUCT[]) => {
+            const order = new Map(list.map((p, i) => [p.name, i]))
+            return [...items].sort((a, b) => {
+                const aIndex = order.has(a.name) ? order.get(a.name)! : Infinity
+                const bIndex = order.has(b.name) ? order.get(b.name)! : Infinity
+                return aIndex - bIndex
+            })
+        }
+
+        switch (sort) {
+            case 'new-arrivals':
+                return byOrder(NEW_ARRIVALS)
+
+            case 'best-selling':
+                return byOrder(BEST_SELLERS)
+
+            case 'title-ascending':
+                return items.sort((a, b) => a.name.localeCompare(b.name))
+
+            case 'title-descending':
+                return items.sort((a, b) => b.name.localeCompare(a.name))
+
+            case 'price-ascending':
+                return items.sort((a, b) => a.price - b.price)
+
+            case 'price-descending':
+                return items.sort((a, b) => b.price - a.price)
+
+            case 'created-ascending':
+                return items
+
+            case 'most-relevant':
+            default:
+                return byOrder(NEW_ARRIVALS)
+        }
+    })
+
     const ProductCmp: Component<PRODUCT> = O => {
         return (
             <A href={O.href} class='product-cmp' style={{ '--c': O.color }}>
@@ -74,9 +118,57 @@ const Products: Component = () => {
             <div class='products-container'>
                 <div class='products-filters'></div>
                 <div class='products-wrapper'>
-                    <div class='products-sort'></div>
+                    <div class='products-sort-container'>
+                        <div class='products-sort'>
+                            <div class='products-count title_smaller'>
+                                {PRODUCTS.length} products
+                            </div>
+
+                            <div class='sort-cta'>
+                                <div class='holder title_smaller'>Sort By:</div>
+                                <div class='select-wrapper'>
+                                    <select
+                                        class='select title_smaller'
+                                        id='SortBy'
+                                        value={sortBy()}
+                                        onChange={e =>
+                                            setSortBy(e.currentTarget.value)
+                                        }
+                                    >
+                                        <option value='most-relevant'>
+                                            New Arrivals
+                                        </option>
+                                        <option value='best-selling'>
+                                            Best selling
+                                        </option>
+                                        <option value='title-ascending'>
+                                            Alphabetically, A-Z
+                                        </option>
+                                        <option value='title-descending'>
+                                            Alphabetically, Z-A
+                                        </option>
+                                        <option value='price-ascending'>
+                                            Price, low to high
+                                        </option>
+                                        <option value='price-descending'>
+                                            Price, high to low
+                                        </option>
+                                        <option value='created-ascending'>
+                                            Date, old to new
+                                        </option>
+                                    </select>
+
+                                    <div class='icon'>
+                                        <ArrowDown2Icon />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class='products-list'>
-                        <For each={PRODUCTS}>{p => <ProductCmp {...p} />}</For>
+                        <For each={sortedProducts()}>
+                            {p => <ProductCmp {...p} />}
+                        </For>
                     </div>
                 </div>
             </div>
