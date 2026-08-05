@@ -156,9 +156,9 @@ const Navbar: Component = () => {
                             onClear={() => setQuery('')}
                         />
 
-                        <div class='search-cta icon'>
+                        <button class='search-cta icon'>
                             <SearchIcon />
-                        </div>
+                        </button>
                     </div>
 
                     <div class='navbar-ctas title_hero2'>
