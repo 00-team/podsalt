@@ -17,6 +17,8 @@ main.product-page-container {
 
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+        align-content: center;
         gap: 0.5rem;
 
         margin-bottom: 2rem;
@@ -253,6 +255,13 @@ main.product-page-container {
             align-items: center;
             justify-content: flex-start;
         }
+        @media screen and (max-width: 768px) {
+            gap: 1.5rem;
+
+            .product-image {
+                padding: 3rem;
+            }
+        }
     }
 
     .product-details {
@@ -336,6 +345,17 @@ main.product-page-container {
                             }
                         }
                     }
+                }
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .detail-ctas {
+                flex-direction: column;
+
+                .detail-cta {
+                    width: 100%;
+                    text-align: center;
                 }
             }
         }
