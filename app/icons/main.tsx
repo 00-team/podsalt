@@ -301,3 +301,16 @@ export const ArrowRight2Icon = () => (
         </g>
     </svg>
 )
+
+export const AvailabilityIcon = () => (
+    <svg class='icon icon-inventory-status'>
+        <circle cx='7.5' cy='7.5' r='7.5' fill='currentColor'></circle>
+        <circle
+            cx='7.5'
+            cy='7.5'
+            r='5'
+            fill='currentColor'
+            stroke='#FFF'
+        ></circle>
+    </svg>
+)
