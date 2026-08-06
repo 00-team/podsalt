@@ -26,7 +26,7 @@ export const CHERRY_COLA_ICE: PRODUCT = {
         'host-hybrid-strawberry-ice',
         'host-hybrid-cherry-ice',
         'host-hybrid-orange-fizz',
-        'host-hybrid-gummy-bears',
+        'host-hybrid-gummy-bear',
     ],
 }
 
@@ -44,7 +44,7 @@ export const STRAWBERRY_ICE: PRODUCT = {
     likeThisIds: [
         'host-hybrid-cherry-cola-ice',
         'host-hybrid-triple-berry-ice',
-        'host-hybrid-gummy-bears',
+        'host-hybrid-gummy-bear',
         'host-hybrid-peach-punch-fizz',
     ],
 }
@@ -62,7 +62,7 @@ export const PEACH_PUNCH_FIZZ: PRODUCT = {
     color: '#fca766',
     likeThisIds: [
         'host-hybrid-strawberry-ice',
-        'host-hybrid-gummy-bears',
+        'host-hybrid-gummy-bear',
         'host-hybrid-orange-fizz',
         'pod-salt-prime-mango-smoothie',
     ],
@@ -106,14 +106,14 @@ export const SOUR_APPLE_ICE: PRODUCT = {
     ],
 }
 
-export const GUMMY_BEARS: PRODUCT = {
+export const GUMMY_BEAR: PRODUCT = {
     name: 'Host Hybrid Gummy Bears',
     flavours: ['Mixed Fruit', 'Candy', 'Gummy'],
     desc: 'A playful candy-style mix of juicy fruits and soft sweetness.',
     description:
         'This candy profile combines strawberry, orange, lemon, and cherry into a colorful gummy-bear blend. Sweet and nostalgic, it delivers a smooth fruit-candy character that stays bright without becoming heavy.',
     img: '/public/imgs/products/gummy-bears.webp',
-    id: 'host-hybrid-gummy-bears',
+    id: 'host-hybrid-gummy-bear',
     price: 5,
     alt: 'Host Hybrid Gummy Bears',
     color: '#f3bdc4',
@@ -159,7 +159,7 @@ export const NEW_YORK_CHEESECAKE: PRODUCT = {
         'host-hybrid-tobacco-vanilla-caramel',
         'host-hybrid-forest-fruit-leather',
         'host-hybrid-red-wine-ice',
-        'host-hybrid-gummy-bears',
+        'host-hybrid-gummy-bear',
     ],
 }
 
@@ -215,7 +215,7 @@ export const ORANGE_FIZZ: PRODUCT = {
     likeThisIds: [
         'host-hybrid-cherry-cola-ice',
         'host-hybrid-peach-punch-fizz',
-        'host-hybrid-gummy-bears',
+        'host-hybrid-gummy-bear',
         'host-hybrid-pineapple-ice',
     ],
 }
@@ -253,7 +253,7 @@ export const TRIPLE_BERRY_ICE: PRODUCT = {
     likeThisIds: [
         'host-hybrid-strawberry-ice',
         'host-hybrid-forest-fruit-leather',
-        'host-hybrid-gummy-bears',
+        'host-hybrid-gummy-bear',
         'host-hybrid-cherry-ice',
     ],
 }
@@ -397,7 +397,7 @@ export const PRODUCTS: PRODUCT[] = [
     PEACH_PUNCH_FIZZ,
     TOBACCO_VANILLA_CARAMEL,
     SOUR_APPLE_ICE,
-    GUMMY_BEARS,
+    GUMMY_BEAR,
     RED_MOJITO,
     NEW_YORK_CHEESECAKE,
     FOREST_FRUIT_LEATHER,
@@ -422,7 +422,7 @@ export const NEW_ARRIVALS: PRODUCT[] = [
 ]
 
 export const BEST_SELLERS: PRODUCT[] = [
-    GUMMY_BEARS,
+    GUMMY_BEAR,
     RED_MOJITO,
     NEW_YORK_CHEESECAKE,
     FOREST_FRUIT_LEATHER,

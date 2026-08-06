@@ -187,9 +187,9 @@ const Product: Component = () => {
                     <p>{state.product?.description}</p>
                     <p>
                         Key Features:
-                        <br />• Intensely sweet 'bar salt' flavour
-                        <br />• 10ml nic salt e-liquid
-                        <br />• Available in 5mg, 10mg &amp; 20mg
+                        {/* <br />• Intensely sweet 'bar salt' flavour */}
+                        <br />• 30ml nic salt e-liquid
+                        <br />• Available in 25mg, 50mg;
                         <br />• Smooth 50/50 VG/PG blend
                         <br />• UAE Market Compliant
                     </p>
