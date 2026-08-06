@@ -314,3 +314,141 @@ export const AvailabilityIcon = () => (
         ></circle>
     </svg>
 )
+
+export const ClockIcon = () => (
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <g class='nc-icon-wrapper' fill='currentColor'>
+            <path
+                fill='currentColor'
+                d='M12,0A12.013,12.013,0,0,0,0,12a1,1,0,0,0,2,0,10.023,10.023,0,1,1,4.379,8.26L8.184,18a.5.5,0,0,0-.349-.809l-6.672-.568a.5.5,0,0,0-.519.65l2.042,6.377a.5.5,0,0,0,.385.339.476.476,0,0,0,.091.009.5.5,0,0,0,.391-.189l1.578-1.98A12,12,0,1,0,12,0Z'
+            />
+            <path
+                fill='currentColor'
+                d='M12,4a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h7a1,1,0,0,0,0-2H13V5A1,1,0,0,0,12,4Z'
+                data-color='color-2'
+            />
+        </g>
+    </svg>
+)
+
+export const RewardIcon = () => (
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <g
+            class='nc-icon-wrapper'
+            stroke-linejoin='round'
+            fill='currentColor'
+            stroke-linecap='round'
+        >
+            <polygon
+                data-color='color-2'
+                stroke='currentColor'
+                fill='none'
+                points='12 6.767 13.545 9.898 17 10.4 14.5 12.837 15.09 16.278 12 14.653 8.91 16.278 9.5 12.837 7 10.4 10.455 9.898 12 6.767'
+            />
+            <circle
+                data-cap='butt'
+                stroke='currentColor'
+                fill='none'
+                r='11'
+                cy='12'
+                cx='12'
+            />
+            <circle
+                stroke='none'
+                data-stroke='none'
+                fill='currentColor'
+                r='1'
+                cy='19'
+                cx='12'
+            />
+            <circle
+                stroke='none'
+                data-stroke='none'
+                fill='currentColor'
+                r='1'
+                cy='14.163'
+                cx='18.657'
+            />
+            <circle
+                stroke='none'
+                data-stroke='none'
+                fill='currentColor'
+                r='1'
+                cy='6.337'
+                cx='16.114'
+            />
+            <circle
+                stroke='none'
+                data-stroke='none'
+                fill='currentColor'
+                r='1'
+                cy='6.337'
+                cx='7.886'
+            />
+            <circle
+                stroke='none'
+                data-stroke='none'
+                fill='currentColor'
+                r='1'
+                cy='14.163'
+                cx='5.343'
+            />
+        </g>
+    </svg>
+)
+
+export const DevliverIcon = () => (
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+        <g
+            class='nc-icon-wrapper'
+            stroke-linejoin='round'
+            fill='currentColor'
+            stroke-linecap='round'
+        >
+            <line
+                y2='12'
+                x2='3'
+                y1='12'
+                x1='6'
+                stroke='currentColor'
+                fill='none'
+                data-color='color-2'
+            />
+            <line
+                y2='17'
+                x2='5'
+                y1='17'
+                x1='6'
+                stroke='currentColor'
+                fill='none'
+                data-color='color-2'
+            />
+            <polyline
+                points='17.829,18 23,18 23,12 19,10 18,6 10,6 10,18 12.171,18'
+                stroke='currentColor'
+                fill='none'
+                data-cap='butt'
+            />
+            <line
+                y2='7'
+                x2='6'
+                y1='7'
+                x1='1'
+                stroke='currentColor'
+                fill='none'
+                data-color='color-2'
+            />
+            <polyline
+                points='1,2 10,2 10,6'
+                stroke='currentColor'
+                fill='none'
+            />
+            <circle r='3' cy='19' cx='15' stroke='currentColor' fill='none' />
+            <polyline
+                points='14,9 14,11 16,11'
+                stroke='currentColor'
+                fill='none'
+            />
+        </g>
+    </svg>
+)

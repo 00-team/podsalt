@@ -1,7 +1,14 @@
 import { A, useNavigate, useParams } from '@solidjs/router'
 import { Component, onMount, Show } from 'solid-js'
 
-import { ArrowDown2Icon, ArrowRight2Icon, AvailabilityIcon } from 'icons/main'
+import {
+    ArrowDown2Icon,
+    ArrowRight2Icon,
+    AvailabilityIcon,
+    ClockIcon,
+    DevliverIcon,
+    RewardIcon,
+} from 'icons/main'
 import { hasProductById, PRODUCT } from 'shared/products'
 import { createStore } from 'solid-js/store'
 import './style/product.scss'
@@ -80,6 +87,34 @@ const Product: Component = () => {
                             </select>
                             <div class='icon'>
                                 <ArrowDown2Icon />
+                            </div>
+                        </div>
+                    </div>
+                    <div class='timelines title_smaller'>
+                        <div class='timeline'>
+                            <div class='icon'>
+                                <ClockIcon />
+                            </div>
+                            <div class='field__label-text'>
+                                Next Day delivery before 2pm
+                            </div>
+                        </div>
+
+                        <div class='timeline'>
+                            <div class='icon'>
+                                <DevliverIcon />
+                            </div>
+                            <div class='field__label-text'>
+                                Free Next Day Delivery over £30
+                            </div>
+                        </div>
+
+                        <div class='timeline'>
+                            <div class='icon'>
+                                <RewardIcon />
+                            </div>
+                            <div class='field__label-text'>
+                                Get Reward Points in Every Purchase.
                             </div>
                         </div>
                     </div>
