@@ -17,7 +17,6 @@ const Products: Component = () => {
         | 'price-ascending'
         | 'price-descending'
         | 'created-ascending'
-        | 'most-relevant'
 
     type FILTER = {
         name: string
@@ -32,7 +31,7 @@ const Products: Component = () => {
     }
 
     const [state, setState] = createStore<STATE>({
-        sortBy: 'most-relevant',
+        sortBy: 'new-arrivals',
         filtered: '',
         filters: [],
         showMobile: false,
@@ -98,7 +97,6 @@ const Products: Component = () => {
             case 'created-ascending':
                 return items
 
-            case 'most-relevant':
             default:
                 return byOrder(NEW_ARRIVALS)
         }
@@ -213,10 +211,7 @@ const Products: Component = () => {
                         setState('sortBy', e.currentTarget.value as SORT_BY)
                     }
                 >
-                    <option value='most-relevant'>New Arrivals</option>
-                    <option value='new-arrivals'>
-                        New Arrivals (explicit)
-                    </option>
+                    <option value='new-arrivals'>New Arrivals</option>
                     <option value='best-selling'>Best selling</option>
                     <option value='title-ascending'>Alphabetically, A-Z</option>
                     <option value='title-descending'>

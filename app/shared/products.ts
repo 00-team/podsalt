@@ -309,6 +309,6 @@ export const BEST_SELLERS: PRODUCT[] = [
     FOREST_FRUIT_LEATHER,
 ]
 
-export const hasProductById = (id: string): boolean => {
-    return PRODUCTS.some(product => product.id === id)
+export const hasProductById = (id: string): null | PRODUCT => {
+    return PRODUCTS.find(product => product.id === id) || null
 }

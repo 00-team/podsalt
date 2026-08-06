@@ -282,3 +282,22 @@ export const FiltersIcon = () => (
         ></path>
     </svg>
 )
+
+export const ArrowRight2Icon = () => (
+    <svg
+        xmlns='http://www.w3.org/2000/svg'
+        width='25'
+        height='25'
+        viewBox='0 0 12 12'
+    >
+        <g fill='currentColor'>
+            <polyline
+                points='3.5 0.5 9.5 6 3.5 11.5'
+                fill='none'
+                stroke='currentColor'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+            ></polyline>
+        </g>
+    </svg>
+)
