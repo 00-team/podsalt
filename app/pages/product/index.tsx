@@ -1,7 +1,7 @@
 import { A, useNavigate, useParams } from '@solidjs/router'
 import { Component, onMount, Show } from 'solid-js'
 
-import { ArrowRight2Icon, AvailabilityIcon } from 'icons/main'
+import { ArrowDown2Icon, ArrowRight2Icon, AvailabilityIcon } from 'icons/main'
 import { hasProductById, PRODUCT } from 'shared/products'
 import { createStore } from 'solid-js/store'
 import './style/product.scss'
@@ -68,6 +68,18 @@ const Product: Component = () => {
                             <div class='data'>
                                 <AvailabilityIcon />
                                 In stock
+                            </div>
+                        </div>
+                    </div>
+                    <div class='nic-strength'>
+                        <p class='title_small'>Nicotine Strength</p>
+
+                        <div class='select-wrapper'>
+                            <select class='title_small'>
+                                <option selected>20mg</option>
+                            </select>
+                            <div class='icon'>
+                                <ArrowDown2Icon />
                             </div>
                         </div>
                     </div>
