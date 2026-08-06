@@ -83,7 +83,8 @@ const Product: Component = () => {
 
                         <div class='select-wrapper'>
                             <select class='title_small'>
-                                <option selected>20mg</option>
+                                <option selected>25mg</option>
+                                <option>50mg</option>
                             </select>
                             <div class='icon'>
                                 <ArrowDown2Icon />
@@ -117,6 +118,13 @@ const Product: Component = () => {
                                 Get Reward Points in Every Purchase.
                             </div>
                         </div>
+                    </div>
+
+                    <div class='price-container'>
+                        <div class='section_title'>
+                            £ {String(state.product?.price).concat('.00')}
+                        </div>
+                        <div class='taxes title_smaller'>Taxes included.</div>
                     </div>
                 </div>
             </div>
