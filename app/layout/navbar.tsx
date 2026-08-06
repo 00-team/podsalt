@@ -56,7 +56,7 @@ const Navbar: Component = () => {
             <A
                 onclick={R.onClick}
                 href={R.link}
-                end={R.link == '/'}
+                end={true}
                 class='nav-link title'
                 classList={{ [R.text]: true }}
                 inactiveClass=''

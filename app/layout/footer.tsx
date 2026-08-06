@@ -2,6 +2,7 @@ import { Component, For, JSX } from 'solid-js'
 
 import { A } from '@solidjs/router'
 import { FacebookIcon, InstagramIcon, XIcon } from 'icons/main'
+import { Dynamic } from 'solid-js/web'
 import './style/footer.scss'
 
 const Footer: Component = () => {
@@ -19,11 +20,18 @@ const Footer: Component = () => {
         interface InfoProps {
             head: string
             sub: string
+            link?: string
         }
         const Info: Component<InfoProps> = R => (
             <div class='info-cmp'>
                 <div class='info-head title'>{R.head}</div>
-                <div class='info-sub title_hero'>{R.sub}</div>
+                <Dynamic
+                    component={R.link ? 'a' : 'div'}
+                    class='info-sub title_hero'
+                    href={R.link}
+                >
+                    {R.sub}
+                </Dynamic>
             </div>
         )
 
@@ -45,9 +53,17 @@ const Footer: Component = () => {
                     />
                 </div>
                 <div class='contact-infos'>
-                    <Info head='Customer Care' sub='020 37459067' />
+                    <Info
+                        head='Customer Care'
+                        sub='020 37459067'
+                        link='tel:02037459067'
+                    />
+                    <Info
+                        head='Company email'
+                        sub='online@podsalt.com'
+                        link='mailto:online@podsalt.com'
+                    />
                     <Info head='Business Inquiries' sub='01772 956414' />
-                    <Info head='Company email' sub='online@podsalt.com' />
                 </div>
 
                 <div class='awards'>
