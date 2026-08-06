@@ -462,7 +462,7 @@ const Home: Component = () => {
                             Pod Salt Bar X {O.name}
                         </div>
                         <div class='product-price title_hero2'>
-                            £ {String(O.price).concat('.00')}
+                            £ {String(O.price)}
                         </div>
 
                         <button class='cta title_small'>Choose options</button>

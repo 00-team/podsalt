@@ -19,7 +19,7 @@ export const CHERRY_COLA_ICE: PRODUCT = {
         'A nostalgic cherry-cola profile built on juicy cherry notes, a rich cola base, and a clean cooling finish. The flavor blends caramel sweetness, vanilla, citrus zest, and gentle spice for a smooth, refreshing vape with a polished adult feel.',
     img: '/public/imgs/products/cherry-cola-ice.webp',
     id: 'host-hybrid-cherry-cola-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Cherry Cola Ice',
     color: '#ca020e',
     likeThisIds: [
@@ -38,7 +38,7 @@ export const STRAWBERRY_ICE: PRODUCT = {
         'Fresh-picked strawberry flavor leads the profile with lush berry sweetness, a light tart edge, and a delicate floral tone. A clean cooling finish keeps it crisp, vibrant, and easy to enjoy from the first draw to the last.',
     img: '/public/imgs/products/strawberry-ice.webp',
     id: 'host-hybrid-strawberry-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Strawberry Ice',
     color: '#d8438e',
     likeThisIds: [
@@ -57,7 +57,7 @@ export const PEACH_PUNCH_FIZZ: PRODUCT = {
         'This blend opens with sun-ripened peach and soft floral sweetness, then adds a bright mixed-fruit punch layer for extra lift. A fizzy soda-like finish gives it a sparkling, energetic character without overpowering the fruit.',
     img: '/public/imgs/products/peach-punch-fizz.webp',
     id: 'host-hybrid-peach-punch-fizz',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Peach Punch Fizz',
     color: '#fca766',
     likeThisIds: [
@@ -76,7 +76,7 @@ export const TOBACCO_VANILLA_CARAMEL: PRODUCT = {
         'A rich tobacco blend with earthy, toasted depth is softened by creamy vanilla and finished with buttery caramel. The result is full-bodied, balanced, and dessert-like without losing the classic tobacco character.',
     img: '/public/imgs/products/tobacco-vanilla-caramel.webp',
     id: 'host-hybrid-tobacco-vanilla-caramel',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Tobacco Vanilla Caramel',
     color: '#ff5e00',
     likeThisIds: [
@@ -95,7 +95,7 @@ export const SOUR_APPLE_ICE: PRODUCT = {
         'Crisp sour apple drives this flavor with tart skin, juicy flesh, and a lively acidic bite. A touch of sweetness smooths the edge, while the icy finish keeps every inhale bright and refreshing.',
     img: '/public/imgs/products/sour-apple-ice.webp',
     id: 'host-hybrid-sour-apple-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Sour Apple Ice',
     color: '#58ad0e',
     likeThisIds: [
@@ -114,7 +114,7 @@ export const GUMMY_BEAR: PRODUCT = {
         'This candy profile combines strawberry, orange, lemon, and cherry into a colorful gummy-bear blend. Sweet and nostalgic, it delivers a smooth fruit-candy character that stays bright without becoming heavy.',
     img: '/public/imgs/products/gummy-bears.webp',
     id: 'host-hybrid-gummy-bear',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Gummy Bears',
     color: '#f3bdc4',
     likeThisIds: [
@@ -133,7 +133,7 @@ export const RED_MOJITO: PRODUCT = {
         'Fresh mint and zesty lime build the classic mojito base, then ripe red berries add a juicy layer of sweetness and tartness. The result is cool, vibrant, and cocktail-inspired with a clean finish.',
     img: '/public/imgs/products/red-mojito.webp',
     id: 'host-hybrid-red-mojito',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Red Mojito',
     color: '#302a41',
     likeThisIds: [
@@ -152,7 +152,7 @@ export const NEW_YORK_CHEESECAKE: PRODUCT = {
         'A dense cheesecake base delivers rich creaminess, soft vanilla, and a subtle tang. Graham-cracker crust and a light lemon lift add depth and balance, creating a smooth dessert flavor with a refined finish.',
     img: '/public/imgs/products/new-york-cheesecake.webp',
     id: 'host-hybrid-new-york-cheesecake',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid New York Cheesecake',
     color: '#e8b47d',
     likeThisIds: [
@@ -171,7 +171,7 @@ export const FOREST_FRUIT_LEATHER: PRODUCT = {
         'Bold wild berries come together in a concentrated jammy blend of blackberry, raspberry, blueberry, and blackcurrant. A dried-fruit depth gives it a chewy fruit-leather character with a rich, slightly earthy finish.',
     img: '/public/imgs/products/forest-fruit-leather.webp',
     id: 'host-hybrid-forest-fruit-leather',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Forest Fruit Leather',
     color: '#a42c7b',
     likeThisIds: [
@@ -190,7 +190,7 @@ export const CACTUS_ICE: PRODUCT = {
         'Light cactus notes bring a watery green freshness, subtle floral tones, and gentle prickly-pear sweetness. The icy finish keeps it crisp and revitalizing, giving the flavor a clean spa-like feel.',
     img: '/public/imgs/products/cactus-ice.webp',
     id: 'host-hybrid-cactus-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Cactus Ice',
     color: '#3b354b',
     likeThisIds: [
@@ -209,7 +209,7 @@ export const ORANGE_FIZZ: PRODUCT = {
         'Juicy orange leads with sweet citrus flesh, zest, and a lively tang that feels like sparkling orange soda. The fizzy finish adds a clean tingling sensation and keeps the profile light and refreshing.',
     img: '/public/imgs/products/orange-fizz.webp',
     id: 'host-hybrid-orange-fizz',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Orange Fizz',
     color: '#fc490d',
     likeThisIds: [
@@ -228,7 +228,7 @@ export const LEMON_LIME_ICE: PRODUCT = {
         'Tangy lemon zest and juicy lime create a crisp citrus profile with bright acidity and a clean sweetness. A cool icy finish rounds it out, making the blend sharp, refreshing, and easy to keep coming back to.',
     img: '/public/imgs/products/lemon-lime-ice.webp',
     id: 'host-hybrid-lemon-lime-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Lemon Lime Ice',
     color: '#dfc10e',
     likeThisIds: [
@@ -247,7 +247,7 @@ export const TRIPLE_BERRY_ICE: PRODUCT = {
         'Ripe strawberry, tart raspberry, and sweet blueberry combine into a layered berry blend with both brightness and depth. The cooling finish keeps the profile crisp, smooth, and highly refreshing.',
     img: '/public/imgs/products/triple-berry-ice.webp',
     id: 'host-hybrid-triple-berry-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Triple Berry Ice',
     color: '#2b1479',
     likeThisIds: [
@@ -266,7 +266,7 @@ export const CUCUMBER_LIME_ICE: PRODUCT = {
         'Fresh cucumber brings a clean, watery green note, while lime adds a sharp citrus lift. The icy finish makes the whole profile feel crisp, airy, and spa-like from start to finish.',
     img: '/public/imgs/products/cucumber-lime-ice.webp',
     id: 'host-hybrid-cucumber-lime-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Cucumber Lime Ice',
     color: '#249635',
     likeThisIds: [
@@ -285,7 +285,7 @@ export const RED_WINE_ICE: PRODUCT = {
         'A sophisticated red-wine profile with black cherry, plum, and soft oak undertones delivers depth and richness. Cooling ice smooths the finish and keeps the flavor elegant, dry, and refreshing.',
     img: '/public/imgs/products/red-wine-ice.webp',
     id: 'host-hybrid-red-wine-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Red Wine Ice',
     color: '#ff0000',
     likeThisIds: [
@@ -304,7 +304,7 @@ export const PINEAPPLE_ICE: PRODUCT = {
         'Sun-ripened pineapple brings juicy tropical sweetness, gentle tartness, and a fresh-cut feel. A clean icy finish adds brightness and makes the flavor feel lively, crisp, and refreshing.',
     img: '/public/imgs/products/pineapple-ice.webp',
     id: 'host-hybrid-pineapple-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Host Hybrid Pineapple Ice',
     color: '#7f6d21',
     likeThisIds: [
@@ -323,7 +323,7 @@ export const MELON_SPLASH: PRODUCT = {
         'A vibrant blend of juicy melon flavors delivering natural sweetness and a clean, refreshing vape. Soft fruity notes and a balanced finish make it an easy all-day choice for melon lovers.',
     img: '/public/imgs/products/melon-splash.webp',
     id: '/pod-salt-prime-melon-splash',
-    price: 5,
+    price: 4.99,
     alt: 'Pod Salt Prime Melon Splash',
     color: '#be7a50',
     likeThisIds: [
@@ -342,7 +342,7 @@ export const MANGO_SMOOTHIE: PRODUCT = {
         'Luscious ripe mango combines with a silky smoothie-style finish for a rich tropical experience. Sweet, juicy, and velvety from the first inhale to the last.',
     img: '/public/imgs/products/mango-smoothie.webp',
     id: '/pod-salt-prime-mango-smoothie',
-    price: 5,
+    price: 4.99,
     alt: 'Pod Salt Prime Mango Smoothie',
     color: '#f09e13',
     likeThisIds: [
@@ -361,7 +361,7 @@ export const KIWI_GUAVA_ICE: PRODUCT = {
         'Tangy kiwi and sweet tropical guava create a bright fruit blend, while a crisp icy finish keeps every puff refreshing. A balanced tropical profile with just the right amount of cooling.',
     img: '/public/imgs/products/kiwi-guava-ice.webp',
     id: '/pod-salt-prime-kiwi-guava-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Pod Salt Prime Kiwi Guava Ice',
     color: '#8d9a4a',
     likeThisIds: [
@@ -380,7 +380,7 @@ export const CHERRY_ICE: PRODUCT = {
         'Rich ripe cherry delivers deep fruit sweetness with a slight tart edge, while an icy finish adds freshness without overpowering the flavor. Smooth, vibrant, and refreshing throughout.',
     img: '/public/imgs/products/cherry-ice.webp',
     id: '/pod-salt-prime-cherry-ice',
-    price: 5,
+    price: 4.99,
     alt: 'Pod Salt Prime Cherry Ice',
     color: '#d41f51',
     likeThisIds: [

@@ -130,7 +130,7 @@ const Product: Component = () => {
 
                     <div class='price-container'>
                         <div class='section_title'>
-                            £ {String(state.product?.price).concat('.00')}
+                            £ {String(state.product?.price)}
                         </div>
                         <div class='taxes title_smaller'>Taxes included.</div>
                     </div>
@@ -273,7 +273,7 @@ const Product: Component = () => {
                             Pod Salt Bar X {O.name}
                         </div>
                         <div class='product-price title_hero2'>
-                            £ {String(O.price).concat('.00')}
+                            £ {String(O.price)}
                         </div>
 
                         <div class='flavours description'>
