@@ -1,6 +1,6 @@
 import { Component, createSignal, For, JSX, Show } from 'solid-js'
 
-import { A } from '@solidjs/router'
+import { A, useNavigate } from '@solidjs/router'
 import { HoverInp } from 'components/hoverInp'
 import {
     AccountIcon,
@@ -134,12 +134,15 @@ const Navbar: Component = () => {
         )
     }
     const DesktopNav: Component = () => {
+        const nav = useNavigate()
+
         const [query, setQuery] = createSignal('')
 
         return (
             <div class='desktop-nav-container'>
                 <div class='nav-header'>
                     <img
+                        onclick={() => nav('/')}
                         src='/public/imgs/logo_white.webp'
                         class='logo'
                         alt='pod salt prime logo'

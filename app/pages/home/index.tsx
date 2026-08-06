@@ -501,39 +501,65 @@ const Home: Component = () => {
                 <div class='section-wrapper'>
                     <div class='text-wrapper title'>
                         <p>
+                            <strong>Discover Pod Salt Prime</strong>, a refined
+                            new generation of premium nicotine salts crafted for
+                            those who value exceptional flavor with a noticeably
+                            smoother experience. Built as a more advanced
+                            alternative to traditional nic salts, each
+                            formulation uses fewer synthetic acids and
+                            significantly less artificial sweetener, creating a
+                            cleaner, more polished profile that feels lighter on
+                            the throat while remaining satisfying at higher
+                            strengths.
+                        </p>
+
+                        <p>
+                            Its crystal-clear formulation reflects the purity of
+                            its ingredients, helping deliver a cleaner vaping
+                            experience while minimizing unnecessary colorants
+                            and residue.
+                        </p>
+
+                        <p>
+                            This updated approach is designed to preserve purity
+                            and elevate flavor expression.{' '}
+                            <strong>Pod Salt Prime</strong> uses
+                            distillate-style flavor essences and
+                            organic-inspired flavor extracts, allowing each
+                            profile to deliver a more natural, layered character
+                            with reduced harshness. From bright fruit blends and
+                            refreshing ice variations to rich dessert notes and
+                            complex combinations, the range is developed to
+                            provide consistently balanced flavor and
+                            premium-quality performance across a wide spectrum
+                            of tastes.
+                        </p>
+
+                        <p>
+                            Every liquid in the collection is carefully balanced
+                            to provide strong flavor fidelity without the heavy,
+                            lingering sweetness often associated with older
+                            nicotine salt formulations. By reducing unnecessary
+                            artificial additives while maintaining bold,
+                            authentic taste, Pod Salt Prime delivers a cleaner
+                            and more enjoyable vaping experience from the first
+                            draw to the last.
+                        </p>
+
+                        <p>
                             <strong>
-                                Discover a refined line of premium nicotine
-                                salts
+                                Pod Salt Prime represents the next evolution of
+                                nicotine salts.
                             </strong>{' '}
-                            crafted for those who value both exceptional flavor
-                            and a smoother experience. Each formulation begins
-                            with nicotine combined with carefully selected
-                            organic acids, creating a salt base that delivers a
-                            noticeably gentler throat sensation and more
-                            comfortable delivery—even at higher
-                            strengths—compared with traditional freebase
-                            nicotine.
-                        </p>
-
-                        <p>
-                            This organic approach prioritizes purity and
-                            refinement, allowing the true character of every
-                            flavor to shine without harshness. From bright fruit
-                            profiles and cooling ice variations to rich dessert
-                            and complex blended notes, the range is designed to
-                            offer consistent, high-quality performance across a
-                            wide spectrum of tastes.
-                        </p>
-
-                        <p>
-                            Every liquid in the collection is developed with
-                            precision-balanced natural and artificial
-                            flavorings, ensuring authentic, layered profiles
-                            that remain clean and satisfying from the first draw
-                            to the last. The result is an elevated,
-                            adult-oriented nicotine salt experience that
-                            combines smoothness, flavor fidelity, and everyday
-                            reliability in one thoughtfully crafted lineup.
+                            Designed with premium ingredients and a modern
+                            approach to flavor development, it focuses on
+                            delivering exceptional consistency, refined
+                            smoothness, and authentic taste without compromise.
+                            The result is a sophisticated, adult-oriented lineup
+                            that combines cleaner sweetness, enhanced flavor
+                            clarity, and dependable everyday performance in a
+                            range created for those who expect more from every
+                            vape.
                         </p>
                     </div>
 
