@@ -1,5 +1,12 @@
 import { A, useNavigate, useParams } from '@solidjs/router'
-import { Component, onMount, Show } from 'solid-js'
+import {
+    Component,
+    createSignal,
+    For,
+    onCleanup,
+    onMount,
+    Show,
+} from 'solid-js'
 
 import {
     ArrowDown2Icon,
@@ -11,6 +18,7 @@ import {
 } from 'icons/main'
 import { hasProductById, PRODUCT } from 'shared/products'
 import { createStore } from 'solid-js/store'
+import { Dynamic } from 'solid-js/web'
 import './style/product.scss'
 
 const Product: Component = () => {
@@ -33,26 +41,26 @@ const Product: Component = () => {
         setState('product', hasProductById(id))
     })
 
-    return (
-        <main class='product-page-container'>
-            <div class='top-nav title_smaller'>
-                <A class='link' href='/'>
-                    Home
-                </A>
-                <div class='icon'>
-                    <ArrowRight2Icon />
-                </div>
-                <A class='link' href='/products'>
-                    E-Liquids
-                </A>
-                <div class='icon'>
-                    <ArrowRight2Icon />
-                </div>
-                <strong class='link'>
-                    Pod Salt Bar X {state.product?.name}
-                </strong>
+    const TopNav: Component = () => (
+        <div class='top-nav title_smaller'>
+            <A class='link' href='/'>
+                Home
+            </A>
+            <div class='icon'>
+                <ArrowRight2Icon />
             </div>
+            <A class='link' href='/products'>
+                E-Liquids
+            </A>
+            <div class='icon'>
+                <ArrowRight2Icon />
+            </div>
+            <strong class='link'>Pod Salt Bar X {state.product?.name}</strong>
+        </div>
+    )
 
+    const Product: Component = () => {
+        return (
             <div class='product-info-container'>
                 <div class='product-image'>
                     <Show when={state.product?.img}>
@@ -128,6 +136,122 @@ const Product: Component = () => {
                     </div>
                 </div>
             </div>
+        )
+    }
+
+    const Details: Component = () => {
+        type ACTIVE = 'reviews' | 'about' | 'more'
+        const [active, setActive] = createSignal<ACTIVE>('about')
+
+        onCleanup(() => setActive('about'))
+
+        const MoreInfo: Component = () => (
+            <table class='info-table'>
+                <tbody>
+                    <tr>
+                        <td class='holder title_small'>Flavour Category</td>
+                        <td class='data title_small'>
+                            <div class='flavours-wrapper'>
+                                <For each={state.product?.flavours}>
+                                    {f => (
+                                        <span class='flavour'>
+                                            <p> {f}</p>
+                                            <span class='divider'>,</span>
+                                        </span>
+                                    )}
+                                </For>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class='holder title_small'>PG/VG Ratio</td>
+                        <td class='data title_small'>50VG/50PG</td>
+                    </tr>
+
+                    <tr>
+                        <td class='holder title_small'>Nicotine Strength</td>
+                        <td class='data title_small'>25mg, 50mg</td>
+                    </tr>
+
+                    <tr>
+                        <td class='holder title_small'>Bottle Size</td>
+                        <td class='data title_small'>30ml</td>
+                    </tr>
+                </tbody>
+            </table>
+        )
+
+        const About: Component = () => {
+            return (
+                <div class='product-about '>
+                    <p>{state.product?.description}</p>
+                    <p>
+                        Key Features:
+                        <br />• Intensely sweet 'bar salt' flavour
+                        <br />• 10ml nic salt e-liquid
+                        <br />• Available in 5mg, 10mg &amp; 20mg
+                        <br />• Smooth 50/50 VG/PG blend
+                        <br />• UAE Market Compliant
+                    </p>
+                    <p>
+                        Bold, intense 'bar salt' flavours you already love,
+                        delivered on a nicotine hit so smooth its a pleasure to
+                        vape. Sweet, seriously satisfying flavours are what Pod
+                        Salt has been crafting for over 10 years, long before
+                        disposables and 'bar salts' arrived. So while everyone
+                        else chases the formula, we're still the original. The
+                        authentic. That Something Extra? We Call It X.
+                    </p>
+                </div>
+            )
+        }
+
+        const Reviews: Component = () => <></>
+
+        const MAP: Record<ACTIVE, Component> = {
+            about: About,
+            more: MoreInfo,
+            reviews: Reviews,
+        }
+
+        return (
+            <div class='product-details'>
+                <div class='detail-ctas title_small'>
+                    <button
+                        class='detail-cta'
+                        classList={{ active: active() == 'about' }}
+                        onclick={() => setActive('about')}
+                    >
+                        About Product
+                    </button>
+                    <button
+                        class='detail-cta'
+                        classList={{ active: active() == 'more' }}
+                        onclick={() => setActive('more')}
+                    >
+                        More Information
+                    </button>
+                    <button
+                        class='detail-cta'
+                        classList={{ active: active() == 'reviews' }}
+                        onclick={() => setActive('reviews')}
+                    >
+                        Reviews
+                    </button>
+                </div>
+
+                <div class='product-detail-wrapper title_small'>
+                    <Dynamic component={MAP[active()]} />
+                </div>
+            </div>
+        )
+    }
+
+    return (
+        <main class='product-page-container'>
+            <TopNav />
+            <Product />
+            <Details />
         </main>
     )
 }
