@@ -8,9 +8,8 @@ export type PRODUCT = {
     price: number
     alt?: string
     color: string
+    likeThisIds: [string, string, string, string]
 }
-
-// TODO: FIX THE HREFS OF PRODUCTS
 
 export const CHERRY_COLA_ICE: PRODUCT = {
     name: 'Host Hybrid Cherry Cola Ice',
@@ -23,6 +22,12 @@ export const CHERRY_COLA_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Cherry Cola Ice',
     color: '#ca020e',
+    likeThisIds: [
+        'host-hybrid-strawberry-ice',
+        'host-hybrid-cherry-ice',
+        'host-hybrid-orange-fizz',
+        'host-hybrid-gummy-bears',
+    ],
 }
 
 export const STRAWBERRY_ICE: PRODUCT = {
@@ -36,6 +41,12 @@ export const STRAWBERRY_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Strawberry Ice',
     color: '#d8438e',
+    likeThisIds: [
+        'host-hybrid-cherry-cola-ice',
+        'host-hybrid-triple-berry-ice',
+        'host-hybrid-gummy-bears',
+        'host-hybrid-peach-punch-fizz',
+    ],
 }
 
 export const PEACH_PUNCH_FIZZ: PRODUCT = {
@@ -49,6 +60,12 @@ export const PEACH_PUNCH_FIZZ: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Peach Punch Fizz',
     color: '#fca766',
+    likeThisIds: [
+        'host-hybrid-strawberry-ice',
+        'host-hybrid-gummy-bears',
+        'host-hybrid-orange-fizz',
+        'pod-salt-prime-mango-smoothie',
+    ],
 }
 
 export const TOBACCO_VANILLA_CARAMEL: PRODUCT = {
@@ -62,6 +79,12 @@ export const TOBACCO_VANILLA_CARAMEL: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Tobacco Vanilla Caramel',
     color: '#ff5e00',
+    likeThisIds: [
+        'host-hybrid-new-york-cheesecake',
+        'host-hybrid-red-wine-ice',
+        'host-hybrid-forest-fruit-leather',
+        'host-hybrid-cherry-cola-ice',
+    ],
 }
 
 export const SOUR_APPLE_ICE: PRODUCT = {
@@ -75,6 +98,12 @@ export const SOUR_APPLE_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Sour Apple Ice',
     color: '#58ad0e',
+    likeThisIds: [
+        'host-hybrid-lemon-lime-ice',
+        'pod-salt-prime-kiwi-guava-ice',
+        'host-hybrid-cucumber-lime-ice',
+        'host-hybrid-cherry-ice',
+    ],
 }
 
 export const GUMMY_BEARS: PRODUCT = {
@@ -88,6 +117,12 @@ export const GUMMY_BEARS: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Gummy Bears',
     color: '#f3bdc4',
+    likeThisIds: [
+        'host-hybrid-strawberry-ice',
+        'host-hybrid-triple-berry-ice',
+        'host-hybrid-cherry-cola-ice',
+        'host-hybrid-orange-fizz',
+    ],
 }
 
 export const RED_MOJITO: PRODUCT = {
@@ -101,6 +136,12 @@ export const RED_MOJITO: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Red Mojito',
     color: '#302a41',
+    likeThisIds: [
+        'host-hybrid-lemon-lime-ice',
+        'host-hybrid-cucumber-lime-ice',
+        'pod-salt-prime-kiwi-guava-ice',
+        'host-hybrid-cherry-ice',
+    ],
 }
 
 export const NEW_YORK_CHEESECAKE: PRODUCT = {
@@ -114,6 +155,12 @@ export const NEW_YORK_CHEESECAKE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid New York Cheesecake',
     color: '#e8b47d',
+    likeThisIds: [
+        'host-hybrid-tobacco-vanilla-caramel',
+        'host-hybrid-forest-fruit-leather',
+        'host-hybrid-red-wine-ice',
+        'host-hybrid-gummy-bears',
+    ],
 }
 
 export const FOREST_FRUIT_LEATHER: PRODUCT = {
@@ -127,6 +174,12 @@ export const FOREST_FRUIT_LEATHER: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Forest Fruit Leather',
     color: '#a42c7b',
+    likeThisIds: [
+        'host-hybrid-triple-berry-ice',
+        'host-hybrid-strawberry-ice',
+        'host-hybrid-new-york-cheesecake',
+        'host-hybrid-red-wine-ice',
+    ],
 }
 
 export const CACTUS_ICE: PRODUCT = {
@@ -140,6 +193,12 @@ export const CACTUS_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Cactus Ice',
     color: '#3b354b',
+    likeThisIds: [
+        'host-hybrid-cucumber-lime-ice',
+        'host-hybrid-lemon-lime-ice',
+        'pod-salt-prime-kiwi-guava-ice',
+        'host-hybrid-pineapple-ice',
+    ],
 }
 
 export const ORANGE_FIZZ: PRODUCT = {
@@ -153,6 +212,12 @@ export const ORANGE_FIZZ: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Orange Fizz',
     color: '#fc490d',
+    likeThisIds: [
+        'host-hybrid-cherry-cola-ice',
+        'host-hybrid-peach-punch-fizz',
+        'host-hybrid-gummy-bears',
+        'host-hybrid-pineapple-ice',
+    ],
 }
 
 export const LEMON_LIME_ICE: PRODUCT = {
@@ -166,6 +231,12 @@ export const LEMON_LIME_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Lemon Lime Ice',
     color: '#dfc10e',
+    likeThisIds: [
+        'host-hybrid-sour-apple-ice',
+        'host-hybrid-cucumber-lime-ice',
+        'host-hybrid-red-mojito',
+        'host-hybrid-cactus-ice',
+    ],
 }
 
 export const TRIPLE_BERRY_ICE: PRODUCT = {
@@ -179,6 +250,12 @@ export const TRIPLE_BERRY_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Triple Berry Ice',
     color: '#2b1479',
+    likeThisIds: [
+        'host-hybrid-strawberry-ice',
+        'host-hybrid-forest-fruit-leather',
+        'host-hybrid-gummy-bears',
+        'host-hybrid-cherry-ice',
+    ],
 }
 
 export const CUCUMBER_LIME_ICE: PRODUCT = {
@@ -192,6 +269,12 @@ export const CUCUMBER_LIME_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Cucumber Lime Ice',
     color: '#249635',
+    likeThisIds: [
+        'host-hybrid-lemon-lime-ice',
+        'host-hybrid-red-mojito',
+        'host-hybrid-cactus-ice',
+        'pod-salt-prime-kiwi-guava-ice',
+    ],
 }
 
 export const RED_WINE_ICE: PRODUCT = {
@@ -205,6 +288,12 @@ export const RED_WINE_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Red Wine Ice',
     color: '#ff0000',
+    likeThisIds: [
+        'host-hybrid-forest-fruit-leather',
+        'host-hybrid-new-york-cheesecake',
+        'host-hybrid-tobacco-vanilla-caramel',
+        'host-hybrid-cherry-cola-ice',
+    ],
 }
 
 export const PINEAPPLE_ICE: PRODUCT = {
@@ -218,6 +307,12 @@ export const PINEAPPLE_ICE: PRODUCT = {
     price: 5,
     alt: 'Host Hybrid Pineapple Ice',
     color: '#7f6d21',
+    likeThisIds: [
+        'pod-salt-prime-mango-smoothie',
+        'host-hybrid-peach-punch-fizz',
+        'host-hybrid-orange-fizz',
+        'pod-salt-prime-kiwi-guava-ice',
+    ],
 }
 
 export const MELON_SPLASH: PRODUCT = {
@@ -231,6 +326,12 @@ export const MELON_SPLASH: PRODUCT = {
     price: 5,
     alt: 'Pod Salt Prime Melon Splash',
     color: '#be7a50',
+    likeThisIds: [
+        '/pod-salt-prime-mango-smoothie',
+        'host-hybrid-pineapple-ice',
+        'host-hybrid-peach-punch-fizz',
+        'host-hybrid-cactus-ice',
+    ],
 }
 
 export const MANGO_SMOOTHIE: PRODUCT = {
@@ -244,6 +345,12 @@ export const MANGO_SMOOTHIE: PRODUCT = {
     price: 5,
     alt: 'Pod Salt Prime Mango Smoothie',
     color: '#f09e13',
+    likeThisIds: [
+        '/pod-salt-prime-melon-splash',
+        'host-hybrid-pineapple-ice',
+        'host-hybrid-peach-punch-fizz',
+        '/pod-salt-prime-kiwi-guava-ice',
+    ],
 }
 
 export const KIWI_GUAVA_ICE: PRODUCT = {
@@ -257,6 +364,12 @@ export const KIWI_GUAVA_ICE: PRODUCT = {
     price: 5,
     alt: 'Pod Salt Prime Kiwi Guava Ice',
     color: '#8d9a4a',
+    likeThisIds: [
+        'host-hybrid-pineapple-ice',
+        '/pod-salt-prime-mango-smoothie',
+        'host-hybrid-cactus-ice',
+        'host-hybrid-cucumber-lime-ice',
+    ],
 }
 
 export const CHERRY_ICE: PRODUCT = {
@@ -270,6 +383,12 @@ export const CHERRY_ICE: PRODUCT = {
     price: 5,
     alt: 'Pod Salt Prime Cherry Ice',
     color: '#d41f51',
+    likeThisIds: [
+        'host-hybrid-cherry-cola-ice',
+        'host-hybrid-strawberry-ice',
+        'host-hybrid-triple-berry-ice',
+        'host-hybrid-red-mojito',
+    ],
 }
 
 export const PRODUCTS: PRODUCT[] = [
@@ -309,6 +428,16 @@ export const BEST_SELLERS: PRODUCT[] = [
     FOREST_FRUIT_LEATHER,
 ]
 
-export const hasProductById = (id: string): null | PRODUCT => {
-    return PRODUCTS.find(product => product.id === id) || null
+export const getProductById = (id: string): PRODUCT | null => {
+    return PRODUCTS.find(product => product.id === id) ?? null
+}
+
+export const hasProductById = (id: string): boolean => {
+    return PRODUCTS.some(product => product.id === id)
+}
+
+export const getRelatedProducts = (product: PRODUCT): PRODUCT[] => {
+    return product.likeThisIds
+        .map(getProductById)
+        .filter((p): p is PRODUCT => p !== null)
 }

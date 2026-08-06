@@ -1,6 +1,7 @@
 import { A, useNavigate, useParams } from '@solidjs/router'
 import {
     Component,
+    createEffect,
     createSignal,
     For,
     onCleanup,
@@ -16,7 +17,7 @@ import {
     DevliverIcon,
     RewardIcon,
 } from 'icons/main'
-import { hasProductById, PRODUCT } from 'shared/products'
+import { getProductById, getRelatedProducts, PRODUCT } from 'shared/products'
 import { createStore } from 'solid-js/store'
 import { Dynamic } from 'solid-js/web'
 import './style/product.scss'
@@ -33,12 +34,12 @@ const Product: Component = () => {
         product: null,
     })
 
-    onMount(() => {
+    createEffect(() => {
         const id = param.id
-        if (!id || !hasProductById(id))
+        if (!id || !getProductById(id))
             return nav('/not-found', { replace: true })
 
-        setState('product', hasProductById(id))
+        setState('product', getProductById(id))
     })
 
     const TopNav: Component = () => (
@@ -247,11 +248,71 @@ const Product: Component = () => {
         )
     }
 
+    const MoreLikeThis: Component = () => {
+        const ProductCmp: Component<PRODUCT> = O => {
+            return (
+                <A
+                    href={`/products/${O.id}`}
+                    class='product-cmp'
+                    style={{ '--c': O.color }}
+                >
+                    <div class='product-img-container'>
+                        <div class='product-img'>
+                            <img
+                                src={O.img}
+                                alt={O.alt}
+                                loading='lazy'
+                                decoding='async'
+                            />
+
+                            <div class='overlay title_small'>{O.desc}</div>
+                        </div>
+                    </div>
+
+                    <div class='product-info'>
+                        <div class='product-title title_small'>
+                            Pod Salt Bar X {O.name}
+                        </div>
+                        <div class='product-price title_hero2'>
+                            £ {String(O.price).concat('.00')}
+                        </div>
+
+                        <div class='flavours description'>
+                            <For each={O.flavours}>
+                                {f => (
+                                    <div class='flavour'>
+                                        <p>{f}</p>
+                                        <span class='divider'>,</span>
+                                    </div>
+                                )}
+                            </For>
+                        </div>
+                    </div>
+                </A>
+            )
+        }
+
+        return (
+            <Show when={state.product}>
+                <div class='more-like-this'>
+                    <div class='head section_title'>You may also like</div>
+                    <div class='products-wrapper'>
+                        <For each={getRelatedProducts(state.product!)}>
+                            {p => <ProductCmp {...p} />}
+                        </For>
+                    </div>
+                </div>
+            </Show>
+        )
+    }
+
     return (
         <main class='product-page-container'>
             <TopNav />
             <Product />
             <Details />
+
+            <MoreLikeThis />
         </main>
     )
 }
