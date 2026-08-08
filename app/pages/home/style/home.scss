@@ -20,11 +20,13 @@ main.home-page-container {
 
         .photos-slider {
             width: 100%;
-            aspect-ratio: 3.5 / 1;
+            aspect-ratio: 3 / 1;
 
             display: flex;
             align-items: center;
             justify-content: center;
+
+            overflow: hidden;
 
             @media screen and (max-width: 768px) {
                 aspect-ratio: 1;

@@ -14,10 +14,15 @@ import { HoverInp } from 'components/hoverInp'
 import { ArrowIcon, ArrowRightIcon } from 'icons/main'
 import { BEST_SELLERS, NEW_ARRIVALS, PRODUCT } from 'shared/products'
 import './style/home.scss'
+import { isMobile } from 'shared/tools'
 
 const Home: Component = () => {
     const Hero: Component = () => {
-        const imgs = ['/imgs/banner1.webp', '/imgs/banner2.webp']
+        let imgs = ['/imgs/banner1.webp', '/imgs/banner2.webp']
+
+        if (isMobile()) {
+            imgs = ['/imgs/banner1_mobile.webp', '/imgs/banner2_mobile.webp']
+        }
 
         const [active, setActive] = createSignal(0)
 

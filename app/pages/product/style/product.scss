@@ -134,6 +134,22 @@ main.product-page-container {
                         }
                     }
                 }
+                .sku {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+
+                    font-weight: lighter;
+
+                    margin-bottom: 1rem;
+                    margin-top: 0.2rem;
+
+                    .data {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                    }
+                }
             }
             .nic-strength {
                 display: flex;

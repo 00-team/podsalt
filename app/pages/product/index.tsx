@@ -78,6 +78,10 @@ const Product: Component = () => {
                         <div class='name section_title'>
                             Pod Salt Bar X {state.product?.name}
                         </div>
+                        <div class='sku title_small'>
+                            <div class='holder'>SKU:</div>
+                            <div class='data'>5060438146034</div>
+                        </div>
                         <div class='ava title_small'>
                             <div class='holder'>Availability:</div>
                             <div class='data'>
