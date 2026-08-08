@@ -156,6 +156,7 @@ footer.footer-container {
             }
 
             .footer-links {
+                flex-wrap: unset;
                 flex-direction: column;
                 align-items: center;
 
