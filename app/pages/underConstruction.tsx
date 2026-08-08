@@ -1,6 +1,6 @@
 import { Component } from 'solid-js'
 
-import './style/underConstruction.scss'
+import './style/underconstruction.scss'
 
 const UnderConstruction: Component = () => {
     return (

@@ -18,10 +18,13 @@ import { isMobile } from 'shared/tools'
 
 const Home: Component = () => {
     const Hero: Component = () => {
-        let imgs = ['/imgs/banner1.webp', '/imgs/banner2.webp']
+        let imgs = ['/public/imgs/banner1.webp', '/public/imgs/banner2.webp']
 
         if (isMobile()) {
-            imgs = ['/imgs/banner1_mobile.webp', '/imgs/banner2_mobile.webp']
+            imgs = [
+                '/public/imgs/banner1_mobile.webp',
+                '/public/imgs/banner2_mobile.webp',
+            ]
         }
 
         const [active, setActive] = createSignal(0)
