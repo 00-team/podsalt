@@ -124,7 +124,7 @@ const Products: Component = () => {
 
                 <div class='product-info'>
                     <div class='product-title title_small'>
-                        Pod Salt Bar X {O.name}
+                        Pod Salt PRIME {O.name}
                     </div>
                     <div class='product-price title_hero2'>
                         £ {String(O.price)}

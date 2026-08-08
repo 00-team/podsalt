@@ -55,7 +55,7 @@ const Product: Component = () => {
             <div class='icon'>
                 <ArrowRight2Icon />
             </div>
-            <strong class='link'>Pod Salt Bar X {state.product?.name}</strong>
+            <strong class='link'>Pod Salt PRIME {state.product?.name}</strong>
         </div>
     )
 
@@ -76,7 +76,7 @@ const Product: Component = () => {
                     <div class='info-header'>
                         <div class='sub title_hero2'>Pod Salt</div>
                         <div class='name section_title'>
-                            Pod Salt Bar X {state.product?.name}
+                            Pod Salt PRIME {state.product?.name}
                         </div>
                         <div class='sku title_small'>
                             <div class='holder'>SKU:</div>
@@ -274,7 +274,7 @@ const Product: Component = () => {
 
                     <div class='product-info'>
                         <div class='product-title title_small'>
-                            Pod Salt Bar X {O.name}
+                            Pod Salt PRIME {O.name}
                         </div>
                         <div class='product-price title_hero2'>
                             £ {String(O.price)}
