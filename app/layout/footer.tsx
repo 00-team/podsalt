@@ -63,7 +63,11 @@ const Footer: Component = () => {
                         sub='online@podsalt.com'
                         link='mailto:online@podsalt.com'
                     />
-                    <Info head='Business Inquiries' sub='01772 956414' />
+                    <Info
+                        head='Business Inquiries'
+                        sub='01772 956414'
+                        link='tel:01772956414'
+                    />
                 </div>
 
                 <div class='awards'>
